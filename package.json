@@ -1,0 +1,35 @@
+{
+	"name": "@dense-labs/utils",
+	"version": "1.0.0",
+	"description": "",
+	"auth": "move11@126.com",
+	"github": "https://github.com/dense-labs/utils",
+	"homepage": "https:/github.com/dense-labs/utils",
+	"keywords": [
+		"tools"
+	],
+	"main": "./dist/index.cjs",
+	"module": "dist/index.mjs",
+	"scripts": {
+		"push": "npm run compile && npm publish",
+		"lint": "eslint --ext .js,.vue src",
+		"release": "release-it",
+		"rollup": "rimraf dist && rollup -c"
+	},
+	"license": "MIT",
+	"devDependencies": {
+		"eslint": "^8.38.0",
+		"release-it": "^15.10.0",
+		"rimraf": "^4.4.1",
+		"rollup-plugin-babel": "^4.4.0",
+		"rollup-plugin-multi-entry": "^2.1.0",
+		"rollup-plugin-node-resolve": "^5.2.0",
+		"rollup-plugin-terser": "^7.0.2",
+		"rollup-plugin-typescript2": "^0.34.1",
+		"rollup-plugin-uglify": "^6.0.4",
+		"typescript": "^5.0.4"
+	},
+	"dependencies": {
+		"@rollup/plugin-commonjs": "^24.0.1"
+	}
+}
