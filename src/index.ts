@@ -15,3 +15,67 @@ export function openLink(url: string, n = "_blank") {
 	e.click()
 	e.remove()
 };
+
+export function debounce(func: { apply: (arg0: any, arg1: any[]) => any; }, wait: number, options: { leading: any; }) {
+	let timeout: number, result: any;
+
+	const later = (context: any, args: any) => {
+		timeout = null;
+		if (args) result = func.apply(context, args);
+	};
+
+	const debounced = function (this: any, ...args: any[]) {
+		if (timeout) clearTimeout(timeout);
+		const callNow = !timeout && options.leading;
+		timeout = setTimeout(later, wait, this, args);
+		if (callNow) result = func.apply(this, args);
+		return result;
+	};
+
+	debounced.cancel = function () {
+		clearTimeout(timeout);
+		timeout = null;
+	};
+
+	return debounced;
+}
+
+export function throttle(func: { apply: (arg0: any, arg1: any[]) => any; }, wait: number, options: { leading: boolean; trailing: boolean; }) {
+	let timeout: number, context: any, args: any[], result: any;
+	let previous = 0;
+
+	const later = () => {
+		previous = options.leading === false ? 0 : Date.now();
+		timeout = null;
+		result = func.apply(context, args);
+		if (!timeout) context = args = null;
+	};
+
+	const throttled = function (this: any, ..._args: any[]) {
+		const now = Date.now();
+		if (!previous && options.leading === false) previous = now;
+		const remaining = wait - (now - previous);
+		context = this;
+		args = _args;
+		if (remaining <= 0 || remaining > wait) {
+			if (timeout) {
+				clearTimeout(timeout);
+				timeout = null;
+			}
+			previous = now;
+			result = func.apply(context, args);
+			if (!timeout) context = args = null;
+		} else if (!timeout && options.trailing !== false) {
+			timeout = setTimeout(later, remaining);
+		}
+		return result;
+	};
+
+	throttled.cancel = function () {
+		clearTimeout(timeout);
+		previous = 0;
+		timeout = context = args = null;
+	};
+
+	return throttled;
+}
