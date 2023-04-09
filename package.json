@@ -1,13 +1,20 @@
 {
 	"name": "@dense-labs/utils",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "",
 	"auth": "move11@126.com",
-	"github": "https://github.com/dense-labs/utils",
 	"homepage": "https:/github.com/dense-labs/utils",
+	"repository": {
+        "type": "git",
+        "url": "https:/github.com/dense-labs/utils"
+    },
 	"keywords": [
 		"tools"
 	],
+	"publishConfig": {
+        "access": "public",
+        "registry": "https://registry.npmjs.org"
+    },
 	"main": "./dist/index.cjs",
 	"module": "dist/index.mjs",
 	"scripts": {
