@@ -79,3 +79,41 @@ export function throttle(func: { apply: (arg0: any, arg1: any[]) => any; }, wait
 
 	return throttled;
 }
+export function _formatNumber(n: any) {
+    n = n.toString()
+    return n[1] ? n : '0' + n
+}
+export function formatDate(date: Date) {
+	
+    const year = date.getFullYear()
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+
+    return [year, month, day].map(_formatNumber).join('-')
+}
+
+// 最近7(n - 1)天 
+export function getWeekDay(n: number) {
+	let nowDate = new Date().getTime()
+	return new Date(nowDate - 1000 * 60 * 60 * 24 * n)
+}
+// 获取当天后n天
+export function getNextDay(n: number) {
+	let nextDate = formatDate(new Date(new Date().getTime() + n * 24 * 60 * 60 * 1000))// 后一天
+	return nextDate
+}
+
+// 根据日期字符串获取星期几
+export function getWeekByDay(dateString: string) {
+	if (!dateString) return
+	let [year, month, day] = dateString!.split('-').map(Number)
+	let date = new Date(year, month - 1, day)
+	return '周' + '日一二三四五六'.charAt(date.getDay())
+}
+// 最近xxx个月
+export function getMonth(monthNumber: number) {
+	let number = monthNumber || 1
+	let end = new Date()
+	end.setMonth(end.getMonth() - number)
+	return (end.getFullYear()) + '-' + ((end.getMonth() + 1) < 10 ? '0' : '') + (end.getMonth() + 1) + '-' + (end.getDate() < 10 ? '0' : '') + end.getDate()
+}
