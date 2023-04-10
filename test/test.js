@@ -1,4 +1,4 @@
-import {getNextDay, getWeekByDay} from '@/dense-labs/utils'
+import {getNextDay, getWeekByDay} from '@dense-labs/utils'
 
 
 console.log(getNextDay(10))
