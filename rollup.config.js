@@ -8,7 +8,8 @@ import path from 'path'
 
 module.exports = {
     // input: ['src/**/*.ts'], //入口
-    input: path.resolve(__dirname, 'src/index.ts'), 
+    input: ['src/**/*.ts'], //入口
+    // input: path.resolve(__dirname, 'src/index.ts'), 
     output: [// commonjs 
     { 
         // package.json 配置的 main 属性 
