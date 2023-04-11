@@ -15,6 +15,10 @@
        
         "noImplicitAny": true, /* 检查隐含 any 类型的表达式和声明 */
         "strictNullChecks": false, /* 严格空检查. */ 
+
+        // "declaration": true, // 根据ts文件自动生成.d.ts声明文件和js文件
+        // "declarationDir": "./types",
+        // "emitDeclarationOnly": true, // 只输出.d.ts声明文件，不生成js文件
         /* 额外检查 */ 
         "noUnusedLocals": true, /* 检查无用的变量. */ 
         "types": [], /* 类型声明文件 */ 

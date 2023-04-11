@@ -1,2 +1,5 @@
-const common = require('../../dist/index.cjs')
-console.log(common.isUrl('https://github.com/'))
+const {isUrl, getWeekByDay} = require('../../dist/index.cjs')
+
+console.log(isUrl('https://github.com/'))
+
+console.log(getWeekByDay('https://github.com/'))

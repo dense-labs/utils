@@ -2,29 +2,23 @@ import multiEntry from 'rollup-plugin-multi-entry'
 import {terser} from 'rollup-plugin-terser'
 import {uglify} from 'rollup-plugin-uglify'
 import commonjs from '@rollup/plugin-commonjs'
-import typescript from 'rollup-plugin-typescript2' 
-import pkg from'./package.json'
+import typescript from '@rollup/plugin-typescript'
+import resolve from '@rollup/plugin-node-resolve';
+import fs from 'fs'
 import path from 'path'
+const pkg = JSON.parse(await fs.readFileSync(path.resolve(process.cwd(), './package.json'), {encoding: 'utf-8'}))
 
-module.exports = {
-    // input: ['src/**/*.ts'], //入口
-    input: ['src/**/*.ts'], //入口
-    // input: path.resolve(__dirname, 'src/index.ts'), 
-    output: [// commonjs 
-    { 
-        // package.json 配置的 main 属性 
-        file: pkg.main, 
+export default {
+    input: 'src/**/*.ts', //入口
+    output: [{
+        file: pkg.main,
         format: 'cjs'
-    }, 
-    // es module 
-    { 
-        // package.json 配置的 module 属性 
-        file: pkg.module, 
+    }, {
+        file: pkg.module,
         format: 'es'
-    }, { 
-        // package.json 配置的 module 属性
+    }, {
         name: 'denseLabs',
-        file: './dist/index.js', 
+        file: './dist/index.umd.js',
         format: 'umd'
     }],
     // 声明它的外部依赖，可以不被打包进去。
@@ -34,10 +28,11 @@ module.exports = {
         include: 'src/**',
     },
     plugins: [
+        resolve(),
+        typescript(),
         multiEntry(),
         terser(),
         commonjs(),
-        typescript(),
         uglify()
     ]
 }
