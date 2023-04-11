@@ -18,6 +18,12 @@
 	"type": "module",
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.mjs",
+	"exports": {
+		".": {
+			"require": "./dist/index.cjs",
+			"import": "./dist/index.mjs"
+		}
+	},
 	"files": [
 		"dist"
 	],
@@ -47,5 +53,9 @@
 		"rollup-plugin-terser": "^7.0.2",
 		"rollup-plugin-uglify": "^6.0.4",
 		"typescript": "^5.0.4"
+	},
+	"dependencies": {
+		"@dense-labs/eslint": "^1.0.0",
+		"rollup": "^3.20.2"
 	}
 }
