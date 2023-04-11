@@ -1,0 +1,5 @@
+{
+	"extends": [
+		"@/dense-labs/eslint/.eslintrc.json"
+	]
+}

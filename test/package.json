@@ -5,12 +5,16 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint --ext .ts,.js,.jsx,.vue ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@dense-labs/utils": "^1.0.3"
+  },
+  "dependencies": {
+    "@dense-labs/eslint": "^1.0.0",
+    "eslint": "^8.38.0"
   }
 }
