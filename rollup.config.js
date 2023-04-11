@@ -4,6 +4,7 @@ import {uglify} from 'rollup-plugin-uglify'
 import commonjs from '@rollup/plugin-commonjs'
 import typescript from '@rollup/plugin-typescript'
 import resolve from '@rollup/plugin-node-resolve';
+import clear from 'rollup-plugin-clear'
 import fs from 'fs'
 import path from 'path'
 const pkg = JSON.parse(await fs.readFileSync(path.resolve(process.cwd(), './package.json'), {encoding: 'utf-8'}))
@@ -28,6 +29,9 @@ export default {
         include: 'src/**',
     },
     plugins: [
+        clear({
+            targets: ['dist']
+        }),
         resolve(),
         typescript(),
         multiEntry(),
