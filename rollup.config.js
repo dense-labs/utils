@@ -35,8 +35,8 @@ export default {
         resolve(),
         typescript(),
         multiEntry(),
-        terser(),
         commonjs(),
+        terser(),
         uglify()
     ]
 }

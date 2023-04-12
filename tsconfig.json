@@ -1,32 +1,27 @@
-// tsconfig.json
 { 
     "compilerOptions":  { 
-        /* 基础选项 */ 
-        "target": "esnext", /* 指定 ECMAScript 目标版本：'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'. */ 
-        "module": "esnext", /* 输出的代码使用什么方式进行模块化： 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */ 
-        "lib": [ /* 指定引用的标准库 */ 
-            "esnext",
-            "dom"
-        ],
+        "target": "esnext",
+        "module": "esnext", /* 输出的代码使用什么方式进行模块化： */
+        "lib": ["esnext",  "dom"], /* 指定引用的标准库 */ 
         "esModuleInterop": true,
         "strict": true, /* 启用所有严格类型检查选项 */ 
         "allowJs": true,  /* 允许编译 js 文件 */ 
         "removeComments": true, /* 输出不包含注释 */ 
-       
         "noImplicitAny": true, /* 检查隐含 any 类型的表达式和声明 */
         "strictNullChecks": false, /* 严格空检查. */ 
 
-        // "declaration": true, // 根据ts文件自动生成.d.ts声明文件和js文件
-        // "declarationDir": "./types",
-        // "emitDeclarationOnly": true, // 只输出.d.ts声明文件，不生成js文件
+        "declaration": true, // 根据ts文件自动生成.d.ts声明文件和js文件
+        "declarationDir": "./types/",
+        "emitDeclarationOnly": false, // 只输出.d.ts声明文件，不生成js文件 */
         /* 额外检查 */ 
         "noUnusedLocals": true, /* 检查无用的变量. */ 
         "types": [], /* 类型声明文件 */ 
+        "moduleResolution": "node",
+
+        "baseUrl": "."
     },
     "include": [ 
-        /* 指定编译处理的文件列表 */ 
-        "src/*.ts", 
-        "src/types.ts" 
+        "src/**/*.ts"
     ],
-    "exclude": ["dist"]
+    "exclude": ["node_modules", "dist"]
 }
