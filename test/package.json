@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@dense-labs/utils": "^1.0.3"
+    "@dense-labs/utils": "^1.0.7"
   },
   "dependencies": {
     "@dense-labs/eslint": "^1.0.1",

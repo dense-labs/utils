@@ -22,6 +22,10 @@
 		".": {
 			"require": "./dist/index.cjs",
 			"import": "./dist/index.mjs"
+		},
+		"./config": {
+			"require": "./dist/index.cjs",
+			"import": "./dist/index.mjs"
 		}
 	},
 	"files": [
