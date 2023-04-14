@@ -1,6 +1,6 @@
 import isMobile from './isMobile';
 
-type SignatureConfig = {
+export type SignatureConfig = {
 	ele: string;
 	autoFit?: Boolean;
 	width?: number;
@@ -10,7 +10,7 @@ type SignatureConfig = {
 	fontColor?: string;
 };
 
-class Signature {
+export class Signature {
 	constructor(opt: SignatureConfig) {
 		this.reset(opt);
 		this.setEvent();
@@ -115,5 +115,3 @@ class Signature {
 		}
 	}
 }
-
-export default Signature;

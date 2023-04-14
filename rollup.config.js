@@ -33,7 +33,7 @@ export default {
             targets: ['dist']
         }),
         resolve(),
-        typescript(),
+        typescript({ declaration: true, declarationDir: '/' }),
         multiEntry(),
         commonjs(),
         terser(),

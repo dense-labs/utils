@@ -11,11 +11,8 @@
   "author": "",
   "type": "module",
   "license": "ISC",
-  "devDependencies": {
-    "@dense-labs/utils": "^1.0.9"
-  },
   "dependencies": {
-    "@dense-labs/eslint": "^1.0.1",
+    "@dense-labs/eslint": "^1.0.2",
     "@pureadmin/utils": "^1.8.5",
     "eslint": "^8.38.0",
     "prettier": "^2.8.7",
