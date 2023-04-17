@@ -35,7 +35,7 @@
 	"scripts": {
 		"tsup": "tsup",
 		"push": "npm run compile && npm publish",
-		"lint": "eslint --ext .js,.vue src",
+		"lint": "eslint --ext .js,.vue,.ts src",
 		"release": "release-it",
 		"build": "rollup -c",
 		"dev": "rollup -c -w"
@@ -49,7 +49,15 @@
 		"@rollup/plugin-commonjs": "^24.0.1",
 		"@rollup/plugin-node-resolve": "^15.0.2",
 		"@rollup/plugin-typescript": "^11.1.0",
+		"@typescript-eslint/eslint-plugin": "^5.58.0",
+		"@typescript-eslint/parser": "^5.58.0",
 		"eslint": "^8.38.0",
+		"eslint-config-prettier": "^8.8.0",
+		"eslint-plugin-import": "^2.27.5",
+		"eslint-plugin-prettier": "^4.2.1",
+		"eslint-plugin-vue": "^9.11.0",
+		"esno": "^0.16.3",
+		"prettier": "^2.8.7",
 		"release-it": "^15.10.0",
 		"rimraf": "^4.4.1",
 		"rollup-plugin-babel": "^4.4.0",
@@ -61,9 +69,8 @@
 		"typescript": "^5.0.4"
 	},
 	"dependencies": {
-		"@dense-labs/eslint": "^1.0.0",
+		"@dense-labs/eslint-config-ts": "^1.0.1",
 		"@dense-labs/utils": "^1.0.9",
-		"esno": "^0.16.3",
 		"rollup": "^3.20.2",
 		"rollup-plugin-dts": "^5.3.0",
 		"tsup": "^6.7.0"

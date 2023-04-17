@@ -67,9 +67,7 @@ export function isBoolean(value: unknown): value is boolean {
  */
 export function isSymbol(value: unknown): value is symbol {
 	const type = typeof value
-	return (
-		type == 'symbol' || (type === 'object' && !isNull(value) && getTag(value) === '[object Symbol]')
-	)
+	return type == 'symbol' || (type === 'object' && !isNull(value) && getTag(value) === '[object Symbol]')
 }
 
 /**
@@ -116,7 +114,6 @@ export function isPlainObject(value: unknown): value is Record<string, unknown> 
  * @param value The value to check.
  * @returns `true` if the argument appears to be an array.
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isArray(value: unknown): value is Array<any> {
 	return Array.isArray(value)
 }
