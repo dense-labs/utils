@@ -37,7 +37,7 @@ export default {
 			targets: ['dist']
 		}),
 		resolve(),
-		typescript(/* { declaration: true, declarationDir: '/' } */),
+		typescript(/* { declaration: true, declarationDir: '/' } */{removeComments: false}),
 		multiEntry(),
 		commonjs(),
 		terser(),
