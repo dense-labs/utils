@@ -7,6 +7,18 @@ export function isUrl(t: string): boolean {
 	const pattern = "^((https|http|ftp|rtsp|mms)?://)(([0-9]{1,3}.){3}[0-9]{1,3}|([0-9a-z_!~*'()-]+.)*([0-9a-z][0-9a-z-]{0,61})?[0-9a-z].[a-z]{2,6})(:[0-9]{1,4})?((/?)|(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$"
 	return new RegExp(pattern, 'ig').test(t)
 }
+/**
+ * 将对象序列化为 URL 编码字符串
+ * @param data 要序列化的对象
+ * @returns URL 编码字符串
+ */
+export function serialize(data: {[key: string]: any}): string {
+	let list: string[] = []
+	Object.keys(data).forEach((ele: string) => {
+		list.push(`${ele}=${data[ele]}`)
+	})
+	return list.join('&')
+}
 
 /**
  * 判断给定的字符串是否是一个合法的邮箱地址。
@@ -136,3 +148,90 @@ export function isValidIdNumber(idNumber: string): boolean {
 	let index = sum % 11
 	return idNumber[17] === checksums[index]
 }
+
+/**
+ * 根据身份证号获取出生日期。
+ * @param {string} idCard 身份证号。
+ * @returns {string} 出生日期，格式为 yyyy-mm-dd。
+ */
+export function getBirthDate(idCard: string): string {
+	const year = idCard.substring(6, 10)
+	const month = idCard.substring(10, 12)
+	const day = idCard.substring(12, 14)
+	return year + '-' + month + '-' + day
+}
+
+/**
+ * 根据身份证号获取性别。
+ * @param {string} idCard 身份证号。
+ * @returns {string} 性别，值为 '男' 或 '女'。
+ */
+export function getGender(idCard: string): string {
+	const genderCode = parseInt(idCard.substring(16, 17))
+	return genderCode % 2 === 0 ? '女' : '男'
+}
+
+/**
+ * 根据身份证号获取年龄。
+ * @param {string} idCard 身份证号。
+ * @returns {number} 年龄。
+ */
+export function getAge(idCard: string): number {
+	const birthDate = new Date(getBirthDate(idCard))
+	const diff = Date.now() - birthDate.getTime()
+	const ageDate = new Date(diff)
+	return Math.abs(ageDate.getUTCFullYear() - 1970)
+}
+
+/**
+ * 生成 UUID（通用唯一标识符）。
+ * UUID 是用于在计算机系统中标识信息的标准方式之一。
+ * @returns {string} 生成的 UUID。
+ */
+export function generateUUID(): string {
+	let d = new Date().getTime()
+	if (typeof performance !== 'undefined' && typeof performance.now === 'function') {
+		d += performance.now() // 如果可用，使用高精度计时器
+	}
+	const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+		const r = (d + Math.random() * 16) % 16 | 0
+		d = Math.floor(d / 16)
+		return (c === 'x' ? r : (r & 0x3) | 0x8).toString(16)
+	})
+	return uuid
+}
+
+/**
+ * 根据参数名称从 URL 中获取参数值。
+ * @param {string} name 参数名称。
+ * @returns {string} 参数值，如果没有找到，则返回 null。
+ */
+export function getUrlParameter(name: string): string | null {
+	const urlParams = new URLSearchParams(window.location.search)
+	const value = urlParams.get(name)
+	if (value) {
+		return decodeURIComponent(value)
+	}
+	const hashParams = new URLSearchParams(window.location.hash.split('?')[1])
+	return hashParams.get(name) ? decodeURIComponent(hashParams.get(name)!) : null
+}
+
+/**
+ * 将字符串脱敏处理。
+ * @param {string} str 要脱敏的字符串。
+ * @param {number} start 脱敏开始的位置，默认为 0。
+ * @param {number} end 脱敏结束的位置，默认为字符串的末尾。
+ * @param {string} mask 脱敏使用的掩码字符，默认为 *。
+ * @returns {string} 脱敏后的字符串。
+ */
+export function maskString(str: string, start = 0, end: number = str.length, mask = '*'): string {
+	if (start < 0 || end > str.length || start >= end) {
+		throw new Error('Invalid start or end position')
+	}
+	const maskLength = end - start
+	return str.substr(0, start) + mask.repeat(maskLength) + str.substr(end)
+}
+
+/* const str = '13800138000' // 要脱敏的字符串
+const maskedStr = maskString(str, 3, 7) // 脱敏后的字符串
+console.log(maskedStr) // 输出结果：138****8000 */
