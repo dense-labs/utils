@@ -84,3 +84,4 @@ class ResizableElement {
 		}
 	}
 }
+export default ResizableElement
