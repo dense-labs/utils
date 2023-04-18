@@ -7,6 +7,9 @@ interface ResizeOptions {
 	onResize?: (e: Event) => void
 	onRemove?: () => void
 }
+interface HTMLObjectElement {
+	__resizeElement__?: Element
+}
 
 /**
  * 监听一个元素大小是否改变了
@@ -21,16 +24,16 @@ interface ResizeOptions {
  * @returns viod
  */
 class ResizableElement {
-	private _ele: Element
+	private _ele: HTMLElement
 	private _resizeTrigger?: HTMLObjectElement
 	private _resizeHandlers: ResizeHandler[] = []
 
-	constructor(ele: Element) {
+	constructor(ele: HTMLElement) {
 		this._ele = ele
 		if (getComputedStyle(ele, null).position === 'static') {
 			ele.style.position = 'relative'
 		}
-		this._createResizeTrigger()
+		this.createResizeTrigger()
 	}
 
 	public on(options: ResizeOptions): void {
@@ -50,10 +53,10 @@ class ResizableElement {
 		}
 	}
 
-	private _createResizeTrigger(): void {
+	private createResizeTrigger(): void {
 		let obj = document.createElement('object')
 		obj.setAttribute('style', 'display: block; position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden;opacity: 0; pointer-events: none; z-index: -1;')
-		obj.onload = this._handleObjectLoad.bind(this)
+		obj.onload = this.handleObjectLoad.bind(this)
 		obj.type = 'text/html'
 		this._ele.appendChild(obj)
 		obj.data = 'about:blank'
@@ -61,12 +64,13 @@ class ResizableElement {
 		this._resizeTrigger.__resizeElement__ = this._ele
 	}
 
-	private _handleObjectLoad(): void {
-		this._resizeTrigger!.contentDocument!.defaultView.__resizeTrigger__ = this._resizeTrigger!.__resizeElement__
-		this._resizeTrigger!.contentDocument!.defaultView.addEventListener('resize', this._handleResize.bind(this))
+	private handleObjectLoad(): void {
+		let trigger = this._resizeTrigger!
+		;(window as any).__resizeTrigger__ = trigger.__resizeElement__
+		trigger.contentDocument!.defaultView!.addEventListener('resize', this.handleResize.bind(this))
 	}
 
-	private _handleResize(e: Event): void {
+	private handleResize(e: Event): void {
 		// let trigger = this._resizeTrigger!
 		let handlers = this._resizeHandlers
 		if (handlers) {
