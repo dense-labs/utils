@@ -38,7 +38,7 @@ export function rgbToRgba(rgb: string, opacity: string | number): string {
 }
 
 // Example usage
-let color = getRandomColor()
+/* let color = getRandomColor()
 console.log(color) // outputs "rgb(123, 45, 67)"
 console.log(rgbToHex(color)) // outputs "#7b2d43"
-console.log(rgbToRgba(color, 0.5)) // outputs "rgba(123, 45, 67, 0.5)"
+console.log(rgbToRgba(color, 0.5)) // outputs "rgba(123, 45, 67, 0.5)" */

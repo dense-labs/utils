@@ -1,5 +1,14 @@
 import isMobile from './isMobile'
 
+/**
+ * @param ele：需要绑定手写签名功能的 DOM 元素的选择器字符串。
+ * @param autoFit：一个可选的布尔值，表示是否自动适应父容器的大小。默认值为 false。
+ * @param width：一个可选的数字，表示签名画布的宽度，单位为像素。
+ * @param height：一个可选的数字，表示签名画布的高度，单位为像素。
+ * @param background：一个可选的字符串，表示签名画布的背景颜色。
+ * @param lineWidth：一个可选的数字，表示签名笔画的宽度，单位为像素。
+ * @param fontColor：一个可选的字符串，表示签名笔画的颜色。
+ */
 export type SignatureConfig = {
 	ele: string
 	autoFit?: boolean
