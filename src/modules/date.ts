@@ -93,7 +93,7 @@ export function getWeekDay(n: number): Date {
  * @param n 要获取的天数。
  * @returns 指定天数后的日期。
  */
-export function getNextDay(n: number): string {
+export function getNextDay(n: number | 0): string {
 	let nextDate = formatDate(new Date(new Date().getTime() + n * 24 * 60 * 60 * 1000)) // 后一天
 	return nextDate
 }
