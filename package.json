@@ -24,9 +24,10 @@
 			"require": "./dist/index.cjs",
 			"import": "./dist/index.mjs"
 		},
-		"./config": {
-			"require": "./dist/index.cjs",
-			"import": "./dist/index.mjs"
+		"./localStorage": {
+			"require": "./dist/localStorage.cjs",
+			"import": "./dist/localStorage.mjs",
+			"types": "./dist/localStorage.d.ts"
 		}
 	},
 	"files": [

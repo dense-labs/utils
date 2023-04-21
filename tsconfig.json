@@ -6,7 +6,7 @@
         "esModuleInterop": true,
         "strict": true, /* 启用所有严格类型检查选项 */ 
         "allowJs": true,  /* 允许编译 js 文件 */ 
-        "removeComments": true, /* 输出不包含注释 */ 
+        "removeComments": false, /* 输出不包含注释 */ 
         "noImplicitAny": true, /* 检查隐含 any 类型的表达式和声明 */
         "strictNullChecks": false, /* 严格空检查. */ 
 
