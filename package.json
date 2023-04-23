@@ -37,7 +37,7 @@
 		"tsup": "tsup",
 		"push": "npm run compile && npm publish",
 		"lint": "eslint --ext .js,.vue,.ts src",
-		"release": "release-it",
+		"release": "rollup -c && release-it",
 		"build": "rollup -c",
 		"dev": "rollup -c -w"
 	},
