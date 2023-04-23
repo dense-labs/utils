@@ -34,6 +34,10 @@ export class ExLocalStorage {
 	removeItem(key: string) {
 		localStorage.removeItem(ExLocalStorage.getStorageKey(key))
 	}
+
+	clear() {
+		localStorage.clear()
+	}
 }
 
 export function storageLocal() {
