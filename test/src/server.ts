@@ -1,4 +1,4 @@
-const WebSocket = require('ws');
+import WebSocket from 'ws';
      
 // 创建 WebSocket 服务器实例
 const server = new WebSocket.Server({ port: 8080 });
