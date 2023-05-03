@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint --ext .ts,.js,.jsx,.vue .",
-    "t": "eslint --config .eslintrc.json"
+    "t": "eslint --config .eslintrc.json",
+    "test": "vitest"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,7 @@
     "@pureadmin/utils": "^1.8.5",
     "eslint": "^8.38.0",
     "prettier": "^2.8.7",
+    "vitest": "^0.30.1",
     "vue": "^3.2.47"
   }
 }
