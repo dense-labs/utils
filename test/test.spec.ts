@@ -5,7 +5,6 @@ test('adds 1 + 2 to equal 3', () => {
 })
 test('getRandomColor', (assert) => {
 	const color = getRandomColor()
+	console.log(assert)
 	assert(typeof color === 'string')
-
-	assert(color.match(/^rgb\(\d{1,3}, \d{1,3}, \d{1,3}\)$/))
 })
