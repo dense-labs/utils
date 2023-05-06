@@ -39,7 +39,8 @@
 		"lint": "eslint --ext .js,.vue,.ts src",
 		"release": "rollup -c && release-it",
 		"build": "rollup -c",
-		"dev": "rollup -c -w"
+		"dev": "rollup -c -w",
+		"test": "vitest"
 	},
 	"engines": {
 		"node": ">= 12.15.0",

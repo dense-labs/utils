@@ -7,6 +7,6 @@ console.log(getNextDay(10))
 console.log(getWeekByDay('2023-04-10'))
 
 new Signature({
-    ele: 'signature'
+	ele: 'signature'
 })
 console.log(isEmail('sds@sdsadsa.ccc'))
