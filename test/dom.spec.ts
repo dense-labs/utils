@@ -90,7 +90,7 @@ const toggleClassTests = [
 // 	console.log(results)
 // })
 
-test('Test toggleClass function', ({assert}) => {
+test('Test toggleClass function', ({assert}: any) => {
 	const div = document.createElement('div')
 	div.classList.add('test')
 
@@ -101,7 +101,7 @@ test('Test toggleClass function', ({assert}) => {
 	assert.notOk(div.classList.contains('test'))
 })
 
-test('Test getScrollBarWidth function', ({assert}) => {
+test('Test getScrollBarWidth function', ({assert}: any) => {
 	const width = getScrollBarWidth()
 
 	assert.isNumber(width)
