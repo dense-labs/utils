@@ -1,5 +1,5 @@
 import {test, expect, expectTypeOf} from 'vitest'
-import {getRandomColor, rgbToHex, rgbToRgba, isUndefined, isNull, isString, isNumber, isBoolean, isSymbol, isBigInt, isObject, isPlainObject, isArray, isFunction} from '../dist/index.mjs'
+import {getRandomColor, rgbToHex, rgbToRgba} from '../dist/index.mjs'
 test('adds 1 + 2 to equal 3', () => {
 	expect(1 + 2).toBe(3)
 })
