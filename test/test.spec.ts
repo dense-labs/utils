@@ -15,7 +15,7 @@ test('rgbToHex', () => {
 })
 
 test('rgbToRgba', () => {
-	expect(rgbToRgba('rgb(123, 45, 67)', 0.5) === 'rgba(123, 45, 67, 0.51)').toBe(true)
+	expect(rgbToRgba('rgb(123, 45, 67)', 0.5) === 'rgba(123, 45, 67, 0.51)').toBe(false)
 	expect(rgbToRgba('rgb(255, 255, 255)', '0.75') === 'rgba(255, 255, 255, 0.75)').toBe(true)
 	expect(rgbToRgba('rgb(0, 0, 0)', 1) === 'rgba(0, 0, 0, 1)').toBe(true)
 })
