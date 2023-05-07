@@ -73,6 +73,7 @@ test('isPlainObject', () => {
 test('isArray', () => {
 	expect(isArray([]) === true).toBe(true)
 	expect(isArray('123'.split('')) === true).toBe(true)
+	expect(isArray('') === false).toBe(true)
 })
 test('isFunction', () => {
 	expect(isFunction(function () {}) === true).toBe(true)
