@@ -5,6 +5,7 @@ test('adds 1 + 2 to equal 3', () => {
 })
 test('getRandomColor', () => {
 	const color = getRandomColor()
+	console.log(color)
 	expectTypeOf(color).toBeString()
 })
 
