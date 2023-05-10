@@ -1,5 +1,5 @@
-import {describe, expect, it, vi} from 'vitest'
-import {isUrl, serialize, isEmail, openLink, debounce, throttle, isValidIdNumber, getBirthDate, getGender, getAge, generateUUID, getUrlParameter, maskString, isMobile} from '../dist/index.mjs'
+import {test, assert, describe, expect, it, vi} from 'vitest'
+import {isUrl, serialize, isEmail, openLink, debounce, throttle, isValidIdNumber, getBirthDate, getGender, getAge, generateUUID, getUrlParameter, maskString, shuffle, shuffleObjectProperties} from '../dist/index.mjs'
 describe('isUrl', () => {
 	it('should return true for valid URLs', () => {
 		expect(isUrl('https://www.example.com')).toBe(true)
@@ -155,22 +155,28 @@ describe('generateUUID', () => {
 })
 
 describe('getUrlParameter', () => {
-	it('should return the value of the specified parameter', () => {
-		const url = 'https://www.example.com/?foo=bar&baz=qux'
-		const name = 'baz'
-		const result = getUrlParameter(name)
-		expect(result).toBe('qux')
+	it('should return the value of a query parameter', () => {
+		const result = getUrlParameter('https://www.example.com/test?foo=bar', 'foo')
+		expect(result).toBe('bar')
 	})
 
-	it('should return null if the specified parameter does not exist', () => {
-		const url = 'https://www.example.com/?foo=bar&baz=qux'
-		const name = 'abc'
-		const result = getUrlParameter(name)
-		expect(result).toBe(null)
+	it('should return the value of a hash parameter', () => {
+		const result = getUrlParameter('https://www.example.com/test#foo=bar', 'foo')
+		expect(result).toBe('bar')
+	})
+
+	it('should return null if the parameter is not found', () => {
+		const result = getUrlParameter('https://www.example.com/test', 'foo')
+		expect(result).toBeNull()
+	})
+
+	it('should return a decoded value', () => {
+		const result = getUrlParameter('https://www.example.com/test?foo=%E4%B8%AD%E6%96%87', 'foo')
+		expect(result).toBe('中文')
 	})
 })
 
-/* describe('maskString', () => {
+describe('maskString', () => {
 	it('should mask the specified portion of a string', () => {
 		const str = '1234567890'
 		const start = 2
@@ -187,4 +193,36 @@ describe('getUrlParameter', () => {
 		expect(result).toBe('**********')
 	})
 })
- */
+
+describe('shuffle', () => {
+	it('shuffles an array', () => {
+		const arr = [1, 2, 3, 4, 5]
+		const shuffledArr = shuffle(JSON.parse(JSON.stringify(arr)))
+
+		// Assert that the array has been shuffled
+		expect(shuffledArr).not.toEqual(arr)
+
+		// Assert that the array still has the same elements
+		expect(shuffledArr).toHaveLength(arr.length)
+		arr.forEach((el) => {
+			expect(shuffledArr).toContain(el)
+		})
+	})
+})
+
+describe('shuffleObjectProperties', () => {
+	it('shuffleObjectProperties function shuffles the object properties', () => {
+		const obj = {
+			name: 'Alice',
+			age: 30,
+			email: 'alice@example.com'
+		}
+		const shuffledObj = shuffleObjectProperties(obj)
+
+		// Assert that the object properties have been shuffled
+		expect(Object.keys(shuffledObj)).not.toEqual(Object.keys(obj))
+
+		// Assert that the object still has the same values
+		expect(shuffledObj).toEqual(obj)
+	})
+})

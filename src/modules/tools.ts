@@ -209,14 +209,13 @@ export function generateUUID(): string {
  * @param {string} name 参数名称。
  * @returns {string} 参数值，如果没有找到，则返回 null。
  */
-export function getUrlParameter(name: string): string | null {
-	const urlParams = new URLSearchParams(window.location.search)
-	const value = urlParams.get(name)
-	if (value) {
-		return decodeURIComponent(value)
-	}
-	const hashParams = new URLSearchParams(window.location.hash.split('?')[1])
-	return hashParams.get(name) ? decodeURIComponent(hashParams.get(name)!) : null
+export function getUrlParameter(url: string, name: string): string | null {
+	const urls = url.split('?')[1] || url.split('#')[1]
+	if (!urls) return null
+	const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
+	const r = urls.match(reg)
+	if (r != null) return decodeURIComponent(r[2])
+	return null
 }
 
 /**
@@ -232,7 +231,7 @@ export function maskString(str: string, start = 0, end: number = str.length, mas
 		throw new Error('Invalid start or end position')
 	}
 	const maskLength = end - start
-	return str.substr(0, start) + mask.repeat(maskLength) + str.substr(end)
+	return str.substring(0, start) + mask.repeat(maskLength) + str.substring(end)
 }
 
 /**
@@ -240,3 +239,29 @@ export function maskString(str: string, start = 0, end: number = str.length, mas
  * @returns {boolean} 如果当前设备为移动设备，则返回 true；否则返回 false。
  */
 export const isMobile = typeof window === 'undefined' ? false : /phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone/i.test(navigator.userAgent)
+
+/**
+ * 打乱数组
+ *
+ * @param {Array} arr - 要打乱的数组
+ * @returns {Array} 打乱后的数组
+ */
+export function shuffle(arr: any[]) {
+	return arr.sort(() => Math.random() - 0.5)
+}
+
+/**
+ * 打乱对象属性的顺序
+ *
+ * @param {Object} obj - 要打乱属性顺序的对象
+ * @returns {Object} 打乱属性顺序后的对象
+ */
+export function shuffleObjectProperties(obj: {[x: string]: any}) {
+	const keys = Object.keys(obj)
+	shuffle(keys)
+	const result: any = {}
+	keys.forEach((key) => {
+		result[key] = obj[key]
+	})
+	return result
+}
