@@ -155,6 +155,7 @@ export function isValidIdNumber(idNumber: string): boolean {
  * @returns {string} 出生日期，格式为 yyyy-mm-dd。
  */
 export function getBirthDate(idCard: string): string {
+	if (!isValidIdNumber(idCard)) return
 	const year = idCard.substring(6, 10)
 	const month = idCard.substring(10, 12)
 	const day = idCard.substring(12, 14)
@@ -167,6 +168,7 @@ export function getBirthDate(idCard: string): string {
  * @returns {string} 性别，值为 '男' 或 '女'。
  */
 export function getGender(idCard: string): string {
+	if (!isValidIdNumber(idCard)) return
 	const genderCode = parseInt(idCard.substring(16, 17))
 	return genderCode % 2 === 0 ? '女' : '男'
 }
@@ -177,6 +179,7 @@ export function getGender(idCard: string): string {
  * @returns {number} 年龄。
  */
 export function getAge(idCard: string): number {
+	if (!isValidIdNumber(idCard)) return
 	const birthDate = new Date(getBirthDate(idCard))
 	const diff = Date.now() - birthDate.getTime()
 	const ageDate = new Date(diff)
@@ -232,6 +235,8 @@ export function maskString(str: string, start = 0, end: number = str.length, mas
 	return str.substr(0, start) + mask.repeat(maskLength) + str.substr(end)
 }
 
-/* const str = '13800138000' // 要脱敏的字符串
-const maskedStr = maskString(str, 3, 7) // 脱敏后的字符串
-console.log(maskedStr) // 输出结果：138****8000 */
+/**
+ * 根据用户代理字符串判断当前设备是否为移动设备。
+ * @returns {boolean} 如果当前设备为移动设备，则返回 true；否则返回 false。
+ */
+export const isMobile = typeof window === 'undefined' ? false : /phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone/i.test(navigator.userAgent)

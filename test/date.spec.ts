@@ -39,8 +39,8 @@ describe('getLatelyDay', () => {
 	})
 	it('should return the correct date for one week ago', () => {
 		const today = new Date()
-		const oneWeekAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000)
-		expect(getLatelyDay(7)).toEqual(oneWeekAgo)
+		const oneWeekAgo = dateFormat(new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000), 'yyyy-MM-dd HH:mm:ss')
+		expect(dateFormat(getLatelyDay(7), 'yyyy-MM-dd HH:mm:ss')).toEqual(oneWeekAgo)
 	})
 })
 

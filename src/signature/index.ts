@@ -1,4 +1,4 @@
-import isMobile from './isMobile'
+import {isMobile} from '../modules/tools'
 
 /**
  * @param ele：需要绑定手写签名功能的 DOM 元素的选择器字符串。
