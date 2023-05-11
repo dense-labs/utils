@@ -1,69 +1,69 @@
 export type AnyFunction = (...args: any[]) => any
 /**
- * Get the toString tag of `value`.
+ * 获取 `value` 的 toString 标签。
  *
- * @param value The value to query.
- * @returns The toString tag.
+ * @param value 要查询的值。
+ * @returns toString 标签。
  */
 function getTag(value: unknown): string {
 	return Object.prototype.toString.call(value)
 }
 
 /**
- * Checks if `value` is `undefined`.
+ * 检查 `value` 是否为 `undefined`。
  *
- * @param value The value to check.
- * @returns `true` if the argument appears to be `undefined`.
+ * @param value 要检查的值。
+ * @returns 如果参数似乎为 `undefined` 则返回 `true`。
  */
 export function isUndefined(value: unknown): value is undefined {
 	return value === undefined
 }
 
 /**
- * Checks if `value` is `null`.
+ * 检查 `value` 是否为 `null`。
  *
- * @param value The value to check.
- * @returns `true` if the argument appears to be `null`.
+ * @param value 要检查的值。
+ * @returns 如果参数似乎为 `null` 则返回 `true`。
  */
 export function isNull(value: unknown): value is null {
 	return value === null
 }
 
 /**
- * Checks if `value` is a string.
+ * 检查 `value` 是否为字符串。
  *
- * @param value The value to check.
- * @returns `true` if value is a string, otherwise `false`.
+ * @param value 要检查的值。
+ * @returns 如果值为字符串则返回 `true`，否则返回 `false`。
  */
 export function isString(value: unknown): value is string {
 	return getTag(value) === '[object String]'
 }
 
 /**
- * Checks if `value` is a number.
+ * 检查 `value` 是否为数字。
  *
- * @param value The value to check.
- * @returns `true` if value is a number, otherwise `false`.
+ * @param value 要检查的值。
+ * @returns 如果值为数字则返回 `true`，否则返回 `false`。
  */
 export function isNumber(value: unknown): value is number {
 	return typeof value === 'number' || (typeof value === 'object' && value instanceof Number)
 }
 
 /**
- * Checks if `value` is a boolean.
+ * 检查 `value` 是否为布尔值。
  *
- * @param value The value to check.
- * @returns `true` if value is a boolean, otherwise `false`.
+ * @param value 要检查的值。
+ * @returns 如果值为布尔值则返回 `true`，否则返回 `false`。
  */
 export function isBoolean(value: unknown): value is boolean {
 	return typeof value === 'boolean'
 }
 
 /**
- * Checks if `value` is a symbol.
+ * 检查 `value` 是否为符号。
  *
- * @param value The value to check.
- * @returns `true` if the argument appears to be a symbol.
+ * @param value 要检查的值。
+ * @returns 如果参数似乎为符号则返回 `true`。
  */
 export function isSymbol(value: unknown): value is symbol {
 	const type = typeof value
@@ -71,20 +71,20 @@ export function isSymbol(value: unknown): value is symbol {
 }
 
 /**
- * Checks if `value` is a `BigInt`.
+ * 检查 `value` 是否为 `BigInt` 类型。
  *
- * @param value The value to check.
- * @returns `true` if the argument appears to be a `BigInt`.
+ * @param value 要检查的值。
+ * @returns 如果参数似乎为 `BigInt`，则返回 `true`。
  */
 export function isBigInt(value: unknown): value is bigint {
 	return typeof value === 'bigint'
 }
 
 /**
- * Checks if `value` is a object.
+ * 检查 `value` 是否为对象。
  *
- * @param value The value to check.
- * @returns `true` if the argument appears to be a object.
+ * @param value 要检查的值。
+ * @returns 如果参数似乎为对象，则返回 `true`。
  */
 export function isObject(value: unknown): value is Record<string, unknown> {
 	const type = typeof value
@@ -92,10 +92,10 @@ export function isObject(value: unknown): value is Record<string, unknown> {
 }
 
 /**
- * Checks if `value` is a plain object.
+ * 检查 `value` 是否为普通对象。
  *
- * @param value The value to check.
- * @returns `true` if the argument appears to be a plain object.
+ * @param value 要检查的值。
+ * @returns 如果参数似乎为普通对象，则返回 `true`。
  */
 export function isPlainObject(value: unknown): value is Record<string, unknown> {
 	if (!isObject(value)) return false
@@ -109,20 +109,20 @@ export function isPlainObject(value: unknown): value is Record<string, unknown> 
 }
 
 /**
- * Checks if `value` is an array.
+ * 检查 `value` 是否为数组。
  *
- * @param value The value to check.
- * @returns `true` if the argument appears to be an array.
+ * @param value 要检查的值。
+ * @returns 如果参数似乎为数组，则返回 `true`。
  */
 export function isArray(value: unknown): value is Array<any> {
 	return Array.isArray(value)
 }
 
 /**
- * Checks if `value` is classified as a Function object.
+ * 检查 `value` 是否为函数对象。
  *
- * @param value The value to check.
- * @returns `true` if value is a function, otherwise `false`.
+ * @param value 要检查的值。
+ * @returns 如果参数为函数，则返回 `true`，否则返回 `false`。
  */
 export function isFunction(value: unknown): value is AnyFunction {
 	return typeof value === 'function'
