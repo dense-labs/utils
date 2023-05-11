@@ -1,6 +1,6 @@
 <script setup>
 import {ref, onMounted, reactive} from 'vue'
-import {genRandomColor, storageLocal, isNumber, generateUUID} from '../../../../dist/index'
+import {genRandomColor, storageLocal, isNumber, generateUUID, shuffleObjectProperties} from '../../../dist/index'
 defineProps({
   msg: {
     type: String,
@@ -15,7 +15,10 @@ storageLocal().setItem('bgcolor', genRandomColor())
 const check = () => {
   console.log(isNumber(11))
   obj.uuid = generateUUID()
+  const o = {'a': '23', bb: '32', keys: [1,2,3], nameList: ['a', 'b', 'c'], fn: () => {  }}
+  console.log(shuffleObjectProperties(o))
 }
+
 </script>
 
 <template>
