@@ -1,4 +1,6 @@
+dist
 node_modules
 .vscode
-rollup.config.js
 package-lock.json
+pnpm-lock.yaml
+.DS_Store

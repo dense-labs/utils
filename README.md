@@ -1,3 +1,7 @@
+# @dense-labs/utils
+
+Common utility functions
+
 ## Install
 
 ``` node

@@ -1,35 +1,82 @@
 {
 	"name": "@dense-labs/utils",
-	"version": "1.0.0",
+	"version": "1.2.3",
 	"description": "",
 	"auth": "move11@126.com",
-	"github": "https://github.com/dense-labs/utils",
-	"homepage": "https:/github.com/dense-labs/utils",
+	"homepage": "https://github.com/dense-labs/utils",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/dense-labs/utils"
+	},
 	"keywords": [
 		"tools"
 	],
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org"
+	},
+	"type": "module",
 	"main": "./dist/index.cjs",
-	"module": "dist/index.mjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"require": "./dist/index.cjs",
+			"import": "./dist/index.mjs"
+		},
+		"./localStorage": {
+			"require": "./dist/localStorage.cjs",
+			"import": "./dist/localStorage.mjs",
+			"types": "./dist/localStorage.d.ts"
+		}
+	},
+	"files": [
+		"dist"
+	],
 	"scripts": {
+		"tsup": "tsup",
 		"push": "npm run compile && npm publish",
-		"lint": "eslint --ext .js,.vue src",
-		"release": "release-it",
-		"rollup": "rimraf dist && rollup -c"
+		"lint": "eslint --ext .js,.vue,.ts src",
+		"release": "rollup -c && release-it",
+		"build": "rollup -c",
+		"dev": "rollup -c -w",
+		"test": "vitest"
+	},
+	"engines": {
+		"node": ">= 12.15.0",
+		"npm": ">= 6.13.4"
 	},
 	"license": "MIT",
 	"devDependencies": {
+		"@rollup/plugin-commonjs": "^24.0.1",
+		"@rollup/plugin-node-resolve": "^15.0.2",
+		"@rollup/plugin-typescript": "^11.1.0",
+		"@typescript-eslint/eslint-plugin": "^5.58.0",
+		"@typescript-eslint/parser": "^5.58.0",
 		"eslint": "^8.38.0",
+		"eslint-config-prettier": "^8.8.0",
+		"eslint-plugin-import": "^2.27.5",
+		"eslint-plugin-prettier": "^4.2.1",
+		"eslint-plugin-vue": "^9.11.0",
+		"esno": "^0.16.3",
+		"jsdom": "^22.0.0",
+		"prettier": "^2.8.7",
 		"release-it": "^15.10.0",
 		"rimraf": "^4.4.1",
 		"rollup-plugin-babel": "^4.4.0",
+		"rollup-plugin-clear": "^2.0.7",
 		"rollup-plugin-multi-entry": "^2.1.0",
 		"rollup-plugin-node-resolve": "^5.2.0",
 		"rollup-plugin-terser": "^7.0.2",
-		"rollup-plugin-typescript2": "^0.34.1",
 		"rollup-plugin-uglify": "^6.0.4",
 		"typescript": "^5.0.4"
 	},
 	"dependencies": {
-		"@rollup/plugin-commonjs": "^24.0.1"
+		"@dense-labs/eslint-config-ts": "^1.0.1",
+		"@dense-labs/utils": "^1.0.9",
+		"rollup": "^3.20.2",
+		"rollup-plugin-dts": "^5.3.0",
+		"tsup": "^6.7.0",
+		"vitest": "^0.30.1"
 	}
 }
