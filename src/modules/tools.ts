@@ -249,7 +249,35 @@ export const isMobile = typeof window === 'undefined' ? false : /phone|pad|pod|i
 export function shuffle(arr: any[]) {
 	return arr.sort(() => Math.random() - 0.5)
 }
-
+/**
+ * 打乱数组
+ *
+ * @param {Array} arr - 要打乱的数组
+ * @param {Array} arr - 打乱后的书数组是否能和原数组一致
+ * @returns {Array} 打乱后的数组
+ */
+export function shuffleArray(arr: any[], allowSame = false): any[] {
+	if (arr.length <= 1) {
+		// 只有一个元素，不需要打乱
+		return arr
+	}
+	let shuffled: any[]
+	if (allowSame) {
+		// 如果允许和原数组相同，则复制原数组并随机交换元素
+		shuffled = [...arr]
+		for (let i = 0; i < shuffled.length; i++) {
+			const j = Math.floor(Math.random() * shuffled.length)
+			;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+		}
+	} else {
+		// 如果不允许和原数组相同，则打乱数组并检查是否与原数组相同
+		shuffled = shuffleArray(arr, true)
+		while (shuffled.every((value, index) => value === arr[index])) {
+			shuffled = shuffleArray(arr, true)
+		}
+	}
+	return shuffled
+}
 /**
  * 打乱对象属性的顺序
  *
