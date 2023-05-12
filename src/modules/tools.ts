@@ -279,17 +279,25 @@ export function shuffleArray(arr: any[], allowSame = false): any[] {
 	return shuffled
 }
 /**
- * 打乱对象属性的顺序
- *
- * @param {Object} obj - 要打乱属性顺序的对象
- * @returns {Object} 打乱属性顺序后的对象
+ * 打乱对象中属性值的顺序
+ * @param obj 需要打乱的对象
+ * @param allowSame 是否允许打乱后与原对象相同，默认为 false
+ * @returns 返回打乱后的新对象
  */
-export function shuffleObjectProperties(obj: {[x: string]: any}) {
+export function shuffleObject(obj: object, allowSame = false): object {
 	const keys = Object.keys(obj)
-	shuffle(keys)
-	const result: any = {}
-	keys.forEach((key) => {
-		result[key] = obj[key]
-	})
-	return result
+	const values = Object.values(obj)
+
+	const shuffledValues = shuffleArray(values)
+
+	const shuffledObj: any = {}
+	for (let i = 0; i < keys.length; i++) {
+		if (allowSame) {
+			shuffledObj[keys[i]] = shuffledValues[i]
+		} else {
+			shuffledObj[keys[Math.floor(Math.random() * keys.length)]] = shuffledValues[i]
+		}
+	}
+
+	return shuffledObj
 }

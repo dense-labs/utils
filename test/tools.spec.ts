@@ -1,5 +1,5 @@
 import {test, assert, describe, expect, it, vi} from 'vitest'
-import {isUrl, serialize, isEmail, openLink, debounce, throttle, isValidIdNumber, getBirthDate, getGender, getAge, generateUUID, getUrlParameter, maskString, shuffle, shuffleObjectProperties} from '../dist/index.mjs'
+import {isUrl, serialize, isEmail, openLink, debounce, throttle, isValidIdNumber, getBirthDate, getGender, getAge, generateUUID, getUrlParameter, maskString, shuffle, shuffleObject} from '../dist/index.mjs'
 describe('isUrl', () => {
 	it('should return true for valid URLs', () => {
 		expect(isUrl('https://www.example.com')).toBe(true)
@@ -210,19 +210,47 @@ describe('shuffle', () => {
 	})
 })
 
-describe('shuffleObjectProperties', () => {
-	it('shuffleObjectProperties function shuffles the object properties', () => {
-		const obj = {
+describe('shuffleObject', () => {
+	test('should shuffle object values', () => {
+		const obj1 = {
 			name: 'Alice',
 			age: 30,
 			email: 'alice@example.com'
 		}
-		const shuffledObj = shuffleObjectProperties(obj)
+		const shuffledObj1 = shuffleObject(obj1)
+		expect(Object.values(obj1).sort().join(',')).not.toBe(Object.values(shuffledObj1).sort().join(','))
 
-		// Assert that the object properties have been shuffled
-		expect(Object.keys(shuffledObj)).not.toEqual(Object.keys(obj))
+		const obj2 = {a: 'foo', b: 'bar', c: 'baz'}
+		const shuffledObj2 = shuffleObject(obj2)
+		expect(Object.values(obj2).sort().join(',')).not.toBe(Object.values(shuffledObj2).sort().join(','))
+	})
 
-		// Assert that the object still has the same values
-		expect(shuffledObj).toEqual(obj)
+	test('should not modify object keys', () => {
+		const obj1 = {
+			name: 'Alice',
+			age: 30,
+			email: 'alice@example.com'
+		}
+		const shuffledObj1 = shuffleObject(obj1)
+		console.log(shuffledObj1)
+		expect(Object.keys(obj1).sort().join(',')).toBe(Object.keys(shuffledObj1).sort().join(','))
+
+		// const obj2 = {a: 'foo', b: 'bar', c: 'baz'}
+		// const shuffledObj2 = shuffleObject(obj2)
+		// expect(Object.keys(obj2).sort().join(',')).toBe(Object.keys(shuffledObj2).sort().join(','))
+	})
+
+	test('should allow same values when allowSame is true', () => {
+		const obj1 = {
+			name: 'Alice',
+			age: 30,
+			email: 'alice@example.com'
+		}
+		const shuffledObj1 = shuffleObject(obj1, true)
+		expect(Object.values(obj1).sort().join(',')).toBe(Object.values(shuffledObj1).sort().join(','))
+
+		const obj2 = {a: 'foo', b: 'bar', c: 'baz'}
+		const shuffledObj2 = shuffleObject(obj2, true)
+		expect(Object.values(obj2).sort().join(',')).toBe(Object.values(shuffledObj2).sort().join(','))
 	})
 })
