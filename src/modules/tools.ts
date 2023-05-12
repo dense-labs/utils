@@ -279,25 +279,24 @@ export function shuffleArray(arr: any[], allowSame = false): any[] {
 	return shuffled
 }
 /**
- * 打乱对象中属性值的顺序
+ * 打乱一个对象
  * @param obj 需要打乱的对象
- * @param allowSame 是否允许打乱后与原对象相同，默认为 false
- * @returns 返回打乱后的新对象
+ * @param allowSame 是否允许与原对象相同。如果为 true，则函数会复制原对象并对其进行随机交换。如果为 false，则函数会直接对原对象进行随机交换并检查是否与原对象相同。如果两个对象相同，则函数会递归调用自身直到打乱后的对象与原对象不同为止。
+ * @returns 返回随机排序的对象。
  */
-export function shuffleObject(obj: object, allowSame = false): object {
-	const keys = Object.keys(obj)
-	const values = Object.values(obj)
-
-	const shuffledValues = shuffleArray(values)
-
-	const shuffledObj: any = {}
-	for (let i = 0; i < keys.length; i++) {
-		if (allowSame) {
-			shuffledObj[keys[i]] = shuffledValues[i]
-		} else {
-			shuffledObj[keys[Math.floor(Math.random() * keys.length)]] = shuffledValues[i]
-		}
+export function shuffleObject<T extends Record<string, any>>(obj: T, allowSame: boolean): T {
+	let newObj = allowSame ? JSON.parse(JSON.stringify(obj)) : obj
+	let keys = Object.keys(newObj)
+	for (let i = keys.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1))
+		;[keys[i], keys[j]] = [keys[j], keys[i]]
 	}
-
+	let shuffledObj: any = {}
+	for (let key of keys) {
+		shuffledObj[key] = newObj[key]
+	}
+	if (!allowSame && JSON.stringify(obj) === JSON.stringify(shuffledObj)) {
+		return shuffleObject(obj, allowSame)
+	}
 	return shuffledObj
 }

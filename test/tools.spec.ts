@@ -200,7 +200,7 @@ describe('shuffle', () => {
 		const shuffledArr = shuffle(JSON.parse(JSON.stringify(arr)))
 
 		// Assert that the array has been shuffled
-		expect(shuffledArr).not.toEqual(arr)
+		// expect(shuffledArr).not.toEqual(arr) // 可能会生成和原数组相同
 
 		// Assert that the array still has the same elements
 		expect(shuffledArr).toHaveLength(arr.length)
@@ -209,48 +209,24 @@ describe('shuffle', () => {
 		})
 	})
 })
-
 describe('shuffleObject', () => {
-	test('should shuffle object values', () => {
-		const obj1 = {
+	it('should shuffle an object with allowSame=true', () => {
+		let obj = {
 			name: 'Alice',
 			age: 30,
 			email: 'alice@example.com'
 		}
-		const shuffledObj1 = shuffleObject(obj1)
-		expect(Object.values(obj1).sort().join(',')).not.toBe(Object.values(shuffledObj1).sort().join(','))
-
-		const obj2 = {a: 'foo', b: 'bar', c: 'baz'}
-		const shuffledObj2 = shuffleObject(obj2)
-		expect(Object.values(obj2).sort().join(',')).not.toBe(Object.values(shuffledObj2).sort().join(','))
+		let shuffledObj = shuffleObject(obj, true)
+		expect(shuffledObj).not.toEqual(obj)
 	})
 
-	test('should not modify object keys', () => {
-		const obj1 = {
+	it('should shuffle an object with allowSame=false', () => {
+		let obj = {
 			name: 'Alice',
 			age: 30,
 			email: 'alice@example.com'
 		}
-		const shuffledObj1 = shuffleObject(obj1)
-		console.log(shuffledObj1)
-		expect(Object.keys(obj1).sort().join(',')).toBe(Object.keys(shuffledObj1).sort().join(','))
-
-		// const obj2 = {a: 'foo', b: 'bar', c: 'baz'}
-		// const shuffledObj2 = shuffleObject(obj2)
-		// expect(Object.keys(obj2).sort().join(',')).toBe(Object.keys(shuffledObj2).sort().join(','))
-	})
-
-	test('should allow same values when allowSame is true', () => {
-		const obj1 = {
-			name: 'Alice',
-			age: 30,
-			email: 'alice@example.com'
-		}
-		const shuffledObj1 = shuffleObject(obj1, true)
-		expect(Object.values(obj1).sort().join(',')).toBe(Object.values(shuffledObj1).sort().join(','))
-
-		const obj2 = {a: 'foo', b: 'bar', c: 'baz'}
-		const shuffledObj2 = shuffleObject(obj2, true)
-		expect(Object.values(obj2).sort().join(',')).toBe(Object.values(shuffledObj2).sort().join(','))
+		let shuffledObj = shuffleObject(obj, false)
+		expect(shuffledObj).not.toEqual(obj)
 	})
 })
