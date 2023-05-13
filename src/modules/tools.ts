@@ -303,3 +303,44 @@ export function shuffleObject<T extends Record<string, any>>(obj: T, allowSame: 
 	}
 	return shuffledObj
 }
+
+/**
+ * 判断两个值是否相等
+ * @param value1 第一个值
+ * @param value2 第二个值
+ * @returns 如果两个值相等，则返回 true，否则返回 false。
+ */
+export function isEqual(value1: any, value2: any): boolean {
+	// 1. 使用 === 运算符判断两个值是否严格相等
+	if (value1 === value2) {
+		return true
+	}
+
+	// 2. 使用 Object.is() 函数判断两个值是否相等
+	if (Object.is(value1, value2)) {
+		return true
+	}
+
+	// 3. 如果两个值都是对象或数组，则递归比较它们的属性和元素
+	if (typeof value1 === 'object' && typeof value2 === 'object' && value1 !== null && value2 !== null) {
+		const keys1 = Object.keys(value1)
+		const keys2 = Object.keys(value2)
+
+		if (keys1.length !== keys2.length) {
+			return false
+		}
+
+		for (let i = 0; i < keys1.length; i++) {
+			const key = keys1[i]
+
+			if (!Object.prototype.hasOwnProperty.call(value1, key) || !isEqual(value1[key], value2[key])) {
+				return false
+			}
+		}
+
+		return true
+	}
+
+	// 如果以上都不满足，则认为两个值不相等
+	return false
+}
