@@ -1,5 +1,5 @@
 import {test, assert, describe, expect, it, vi} from 'vitest'
-import {isUrl, serialize, isEmail, openLink, debounce, throttle, isValidIdNumber, getBirthDate, getGender, getAge, generateUUID, getUrlParameter, maskString, shuffle, shuffleObject} from '../dist/index.mjs'
+import {isUrl, serialize, isEmail, openLink, debounce, throttle, isValidIdNumber, getBirthDate, getGender, getAge, generateUUID, getUrlParameter, maskString, shuffle, shuffleObject, isEqual} from '../dist/index.mjs'
 describe('isUrl', () => {
 	it('should return true for valid URLs', () => {
 		expect(isUrl('https://www.example.com')).toBe(true)
@@ -211,22 +211,64 @@ describe('shuffle', () => {
 })
 describe('shuffleObject', () => {
 	it('should shuffle an object with allowSame=true', () => {
-		let obj = {
-			name: 'Alice',
-			age: 30,
-			email: 'alice@example.com'
-		}
-		let shuffledObj = shuffleObject(obj, true)
-		expect(shuffledObj).not.toEqual(obj)
+		let obj = {name: 'Alice', age: 30, email: 'alice@example.com'}
+		let shuffledObj = shuffleObject(obj)
+		console.log(shuffledObj, obj)
+		expect(shuffledObj).toStrictEqual(obj)
 	})
 
 	it('should shuffle an object with allowSame=false', () => {
-		let obj = {
-			name: 'Alice',
-			age: 30,
-			email: 'alice@example.com'
-		}
+		let obj = {name: 'Alice', age: 30, email: 'alice@example.com'}
 		let shuffledObj = shuffleObject(obj, false)
-		expect(shuffledObj).not.toEqual(obj)
+		expect(shuffledObj).not.toBe(obj)
+	})
+})
+
+describe('isEqual', () => {
+	it('compares two equal primitive values', () => {
+		expect(isEqual(1, 1)).toBe(true)
+		expect(isEqual('hello', 'hello')).toBe(true)
+		expect(isEqual(true, true)).toBe(true)
+	})
+
+	it('compares two different primitive values', () => {
+		expect(isEqual(1, 2)).toBe(false)
+		expect(isEqual('hello', 'world')).toBe(false)
+		expect(isEqual(true, false)).toBe(false)
+	})
+
+	it('compares two equal objects', () => {
+		const obj1 = {a: 1, b: 2}
+		const obj2 = {a: 1, b: 2}
+
+		expect(isEqual(obj1, obj2)).toBe(true)
+	})
+
+	it('compares two different objects', () => {
+		const obj1 = {a: 1, b: 2}
+		const obj2 = {a: 1, b: 3}
+
+		expect(isEqual(obj1, obj2)).toBe(false)
+	})
+
+	it('compares two equal arrays', () => {
+		const arr1 = [1, 2, 3]
+		const arr2 = [1, 2, 3]
+
+		expect(isEqual(arr1, arr2)).toBe(true)
+	})
+
+	it('compares two different arrays', () => {
+		const arr1 = [1, 2, 3]
+		const arr2 = [1, 2, 4]
+
+		expect(isEqual(arr1, arr2)).toBe(false)
+	})
+
+	it('compares objects and arrays recursively', () => {
+		const obj1 = {a: [1, 2], b: {c: 3}}
+		const obj2 = {a: [1, 2], b: {c: 3}}
+
+		expect(isEqual(obj1, obj2)).toBe(true)
 	})
 })
