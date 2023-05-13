@@ -287,6 +287,9 @@ export function shuffleArray(arr: any[], allowSame = false): any[] {
 export function shuffleObject<T extends Record<string, any>>(obj: T, allowSame: boolean): T {
 	let newObj = allowSame ? JSON.parse(JSON.stringify(obj)) : obj
 	let keys = Object.keys(newObj)
+	if (keys.length <= 1) {
+		return newObj
+	}
 	for (let i = keys.length - 1; i > 0; i--) {
 		const j = Math.floor(Math.random() * (i + 1))
 		;[keys[i], keys[j]] = [keys[j], keys[i]]
