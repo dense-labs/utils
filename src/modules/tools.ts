@@ -344,3 +344,12 @@ export function isEqual(value1: any, value2: any): boolean {
 	// 如果以上都不满足，则认为两个值不相等
 	return false
 }
+
+/**
+ * 将一个数字转换为千位分隔符格式的字符串
+ * @param num 数字
+ * @returns 返回格式化会的数字
+ */
+export function formatNumberWithCommas(num: number, symbol = ','): string {
+	return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, symbol)
+}

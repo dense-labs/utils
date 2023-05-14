@@ -121,3 +121,45 @@ export function getMonth(monthNumber: number): string {
 	end.setMonth(end.getMonth() - number)
 	return end.getFullYear() + '-' + (end.getMonth() + 1 < 10 ? '0' : '') + (end.getMonth() + 1) + '-' + (end.getDate() < 10 ? '0' : '') + end.getDate()
 }
+
+/**
+ * 把时间戳格式化成日期
+ * @param timestamp 时间戳
+ * @param format 格式 yyyy-MM-dd HH:mm:ss
+ * @returns 格式化后的日期
+ */
+export function formatTimestamp(timestamp: number, format: string): string {
+	const date = new Date(timestamp)
+	return dateFormat(date, format)
+}
+// /**
+//  * 获取指定日期所在季度的第一天日期
+//  * @param date 指定日期
+//  * @returns 指定日期所在季度的第一天日期
+//  */
+// export function getFirstDayOfQuarter(date: Date): Date {
+// 	const month = date.getMonth()
+// 	const quarter = Math.floor(month / 3)
+// 	const firstMonthOfQuarter = quarter * 3
+// 	return new Date(date.getFullYear(), firstMonthOfQuarter, 1)
+// }
+// /**
+//  * 获取指定日期所在季度的最后一天日期
+//  * @param date 指定日期
+//  * @returns 指定日期所在季度的最后一天日期
+//  */
+// export function getLastDayOfQuarter(date: Date): Date {
+// 	const month = date.getMonth()
+// 	const quarter = Math.floor(month / 3)
+// 	const lastMonthOfQuarter = quarter * 3 + 2
+// 	const lastDayOfMonth = new Date(date.getFullYear(), lastMonthOfQuarter + 1, 0).getDate()
+// 	return new Date(date.getFullYear(), lastMonthOfQuarter, lastDayOfMonth)
+// }
+/**
+ * 判断是否是闰年
+ * @param year 年份
+ * @returns 是否是闰年
+ */
+export function isLeapYear(year: number): boolean {
+	return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0
+}
