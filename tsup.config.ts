@@ -1,4 +1,4 @@
-import { defineConfig } from 'tsup'
+import {defineConfig} from 'tsup'
 
 export default defineConfig({
 	dts: true,
@@ -6,7 +6,7 @@ export default defineConfig({
 	minify: true,
 	splitting: true,
 	outDir: 'dist',
-	format: ['cjs', 'esm'],
+	format: ['cjs', 'esm', 'iife'],
 	globalName: 'denseLabs',
 	entry: ['src/index.ts'],
 	noExternal: ['slash']
