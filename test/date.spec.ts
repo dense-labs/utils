@@ -1,15 +1,16 @@
-import {describe, test, expect, it} from 'vitest'
-import {dateFormat, isTimeInRange, formatNumber, formatDate, getLatelyDay, getNextDay, getWeekByDay, getMonth} from '../dist/index.mjs'
+import {describe, expect, it} from 'vitest'
+import {dateFormat, isTimeInRange, formatNumber, formatDate, getLatelyDay, getNextDay, getWeekByDay, getMonth, isDate} from '../dist/index.mjs'
 
 describe('date tools', async () => {
-	test('dateFormat', () => {
+	it('dateFormat', () => {
+		expect(dateFormat('2023-01-09 20:24:21', 'yyyy') === '2023').toBe(true)
 		expect(dateFormat(new Date(), 'yyyy') === '2023').toBe(true)
 		expect(dateFormat(new Date(), 'yyyy-MM') === '2023-05').toBe(true)
 		expect(dateFormat(new Date(), 'yyyy-MM-dd') !== '2023-05-09').toBe(true)
 		expect(dateFormat(new Date(), 'yyyy-MM-dd HH:mm:ss') !== '2023-05-09 20:24:21').toBe(true)
 	})
 
-	test('isTimeInRange', () => {
+	it('isTimeInRange', () => {
 		expect(isTimeInRange('2023-01-09 20:24:21', '2023-05-09 20:24:21', '2023-03-22')).toBe(true)
 		expect(isTimeInRange('2023-01-09 20:24:21', '2023-05-09 20:24:21', '2022-03-22')).toBe(false)
 		expect(isTimeInRange('2023-01-09', '2023-05-09', '2022-03-22')).toBe(false)
@@ -65,9 +66,24 @@ describe('getMonth', () => {
 		expect(getMonth(1)).toBe(oneMonthAgo)
 	})
 
-	test('false', () => {
+	it('false', () => {
 		const today = new Date()
 		const oneMonthAgo = dateFormat(new Date(today.getFullYear(), today.getMonth() + 2, today.getDate()), 'yyyy-MM-dd')
 		expect(getMonth(-2)).toBe(oneMonthAgo)
+	})
+})
+
+describe('isDate', () => {
+	it('true', () => {
+		expect(isDate('2022-01-01')).toBe(true)
+		expect(isDate('Sat Jan 01 2022')).toBe(true)
+
+		expect(isDate(new Date())).toBe(true)
+		expect(isDate(new Date('2022-01-01'))).toBe(true)
+	})
+
+	it('false', () => {
+		expect(isDate('')).toBe(false)
+		expect(isDate('foo')).toBe(false)
 	})
 })

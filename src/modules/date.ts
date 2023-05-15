@@ -10,13 +10,14 @@
  *   - ss：两位数的秒数（00-59）。
  * @returns 格式化后的日期字符串。
  */
-export function dateFormat(date: Date, format: string): string {
-	const year = date.getFullYear().toString()
-	const month = (date.getMonth() + 1).toString().padStart(2, '0')
-	const day = date.getDate().toString().padStart(2, '0')
-	const hours = date.getHours().toString().padStart(2, '0')
-	const minutes = date.getMinutes().toString().padStart(2, '0')
-	const seconds = date.getSeconds().toString().padStart(2, '0')
+export function dateFormat(date: Date | string, format: string): string {
+	const dateObj = typeof date === 'string' ? new Date(date) : date
+	const year = dateObj.getFullYear().toString()
+	const month = (dateObj.getMonth() + 1).toString().padStart(2, '0')
+	const day = dateObj.getDate().toString().padStart(2, '0')
+	const hours = dateObj.getHours().toString().padStart(2, '0')
+	const minutes = dateObj.getMinutes().toString().padStart(2, '0')
+	const seconds = dateObj.getSeconds().toString().padStart(2, '0')
 	const replacements: Record<string, string> = {
 		yyyy: year,
 		MM: month,
@@ -132,29 +133,6 @@ export function formatTimestamp(timestamp: number, format: string): string {
 	const date = new Date(timestamp)
 	return dateFormat(date, format)
 }
-// /**
-//  * 获取指定日期所在季度的第一天日期
-//  * @param date 指定日期
-//  * @returns 指定日期所在季度的第一天日期
-//  */
-// export function getFirstDayOfQuarter(date: Date): Date {
-// 	const month = date.getMonth()
-// 	const quarter = Math.floor(month / 3)
-// 	const firstMonthOfQuarter = quarter * 3
-// 	return new Date(date.getFullYear(), firstMonthOfQuarter, 1)
-// }
-// /**
-//  * 获取指定日期所在季度的最后一天日期
-//  * @param date 指定日期
-//  * @returns 指定日期所在季度的最后一天日期
-//  */
-// export function getLastDayOfQuarter(date: Date): Date {
-// 	const month = date.getMonth()
-// 	const quarter = Math.floor(month / 3)
-// 	const lastMonthOfQuarter = quarter * 3 + 2
-// 	const lastDayOfMonth = new Date(date.getFullYear(), lastMonthOfQuarter + 1, 0).getDate()
-// 	return new Date(date.getFullYear(), lastMonthOfQuarter, lastDayOfMonth)
-// }
 /**
  * 判断是否是闰年
  * @param year 年份
@@ -162,4 +140,20 @@ export function formatTimestamp(timestamp: number, format: string): string {
  */
 export function isLeapYear(year: number): boolean {
 	return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0
+}
+
+/**
+ * 判断一个字符串是否为有效的日期格式。
+ * @param str 要检查的字符串。
+ * @returns 如果字符串是有效的日期格式，则返回 true；否则返回 false。
+ */
+export function isDate(str: string | Date): boolean {
+	if (!str || (typeof str === 'string' && isNaN(Date.parse(str)))) {
+		return false
+	}
+	const date = new Date(str)
+	if (date.toString() === 'Invalid Date') {
+		return false
+	}
+	return !isNaN(date.getTime())
 }

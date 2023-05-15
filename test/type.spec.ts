@@ -1,5 +1,5 @@
-import {test, expect} from 'vitest'
-import {isUndefined, isNull, isString, isNumber, isBoolean, isSymbol, isBigInt, isObject, isPlainObject, isArray, isFunction} from '../dist/index.mjs'
+import {test, expect, describe} from 'vitest'
+import {isUndefined, isNull, isString, isNumber, isBoolean, isSymbol, isBigInt, isObject, isPlainObject, isArray, isFunction, isDate} from '../dist/index.mjs'
 
 test('isUndefined', () => {
 	expect(isUndefined(undefined) === true).toBe(true)
