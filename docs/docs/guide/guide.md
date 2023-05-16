@@ -20,9 +20,9 @@ pnpm add @dense-labs/utils
 ## 🕸️ CDN 引用
 ```bash
 # with unpkg
-<script src="https://unpkg.com/@dense-labs/utils"></script>
+<script src="https://unpkg.com/@dense-labs/utils/dist/index.umd.js"></script>
 # with jsdelivr
-<script src="https://cdn.jsdelivr.net/npm/@dense-labs/utils"></script>
+<script src="https://cdn.jsdelivr.net/npm/@dense-labs/utils/dist/index.umd.js"></script>
 ```
 :::tip
 `CDN` 引用可以使用平台提供的一个全局变量 `denseLabs` 包含所有方法
