@@ -40,7 +40,10 @@
 		"release": "rollup -c && release-it",
 		"build": "rollup -c",
 		"dev": "rollup -c -w",
-		"test": "vitest"
+		"test": "vitest",
+		"docs:dev": "vitepress dev docs",
+		"docs:build": "vitepress build docs",
+		"docs:serve": "vitepress serve docs"
 	},
 	"engines": {
 		"node": ">= 12.15.0",
@@ -69,7 +72,8 @@
 		"rollup-plugin-node-resolve": "^5.2.0",
 		"rollup-plugin-terser": "^7.0.2",
 		"rollup-plugin-uglify": "^6.0.4",
-		"typescript": "^5.0.4"
+		"typescript": "^5.0.4",
+		"vitepress": "^1.0.0-alpha.75"
 	},
 	"dependencies": {
 		"@dense-labs/eslint-config-ts": "^1.0.1",
