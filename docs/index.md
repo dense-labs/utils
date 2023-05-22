@@ -26,7 +26,7 @@ features:
     details: 使用 TypeScript 进行开发，拥有强大的类型推导和代码提示功能，可以提高开发人员的效率和代码的可维护性。还采用了严格的类型检查和编码规范，确保代码的质量和可靠性。
   - icon: ⚓
     title: 规范的开发流程
-    details: 工具类库遵循规范的开发流程，使用 Git 进行版本控制，使用 husky 对提交代码前进行规则校验。
+    details: 遵循规范的开发流程，使用 Git 进行版本控制，使用 husky 对提交代码前进行规则校验。
   - icon: 🌎
     title: 可通过 CDN 引入
     details: 同时支持 unpkg 和 jsdelivr
