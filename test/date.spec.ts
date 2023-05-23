@@ -1,5 +1,5 @@
 import {describe, expect, it} from 'vitest'
-import {dateFormat, isTimeInRange, formatNumber, formatDate, getLatelyDay, getNextDay, getWeekByDay, getMonth, isDate} from '../dist/index.mjs'
+import {dateFormat, isTimeInRange, formatNumber, formatDate, getLatelyDay, getNextDay, getWeekByDay, getMonth, isDate, formatTimeFromSeconds} from '../dist/index.mjs'
 
 describe('date tools', async () => {
 	it('dateFormat', () => {
@@ -85,5 +85,27 @@ describe('isDate', () => {
 	it('false', () => {
 		expect(isDate('')).toBe(false)
 		expect(isDate('foo')).toBe(false)
+	})
+})
+
+describe('formatTimeFromSeconds', () => {
+	it('returns an object with correct properties', () => {
+		const result = formatTimeFromSeconds(123456)
+		expect(result).toHaveProperty('days')
+		expect(result).toHaveProperty('hours')
+		expect(result).toHaveProperty('minutes')
+		expect(result).toHaveProperty('seconds')
+	})
+
+	it('returns the correct values', () => {
+		const result = formatTimeFromSeconds(123456)
+		expect(result).toEqual({days: 1, hours: 10, minutes: 17, seconds: 36})
+	})
+
+	it('returns undefined for falsy input', () => {
+		expect(formatTimeFromSeconds(undefined)).toBeUndefined()
+		expect(formatTimeFromSeconds(null)).toBeUndefined()
+		expect(formatTimeFromSeconds(0)).toBeUndefined()
+		expect(formatTimeFromSeconds('')).toBeUndefined()
 	})
 })

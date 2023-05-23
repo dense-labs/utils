@@ -157,3 +157,21 @@ export function isDate(str: string | Date): boolean {
 	}
 	return !isNaN(date.getTime())
 }
+/**
+ * 将给定的秒数转换成格式为 "X天X小时X分X秒" 的时间字符串。
+ * @param seconds 要转换的秒数。
+ * @returns 格式为 "X天X小时X分X秒" 的时间字符串。
+ */
+export function formatTimeFromSeconds(seconds: number) {
+	if (!seconds) {
+		return
+	}
+	const days = Math.floor(seconds / (3600 * 24))
+	seconds %= 3600 * 24
+	const hours = Math.floor(seconds / 3600)
+	seconds %= 3600
+	const minutes = Math.floor(seconds / 60)
+	seconds %= 60 // 计算剩余的秒数
+	// return `${days > 0 ? days + "天" : ""}${hours}小时${minutes}分${seconds}秒`;
+	return {days, hours, minutes, seconds}
+}
