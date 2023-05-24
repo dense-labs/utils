@@ -4,9 +4,9 @@ hero:
   name: "@dense-labs/utils"
   text: 常用的工具函数
   tagline: 工具函数，助您提高开发效率
-#  image:
-#    src: /logo.png
-#    alt: "@dense-labs/utils"
+  image:
+    src: /logo3.svg
+    alt: "@dense-labs/utils"
   actions:
     - theme: brand
       text: 开始
