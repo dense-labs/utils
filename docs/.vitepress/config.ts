@@ -29,7 +29,7 @@ export default defineConfig({
             text: '在 GitHub 上编辑此页面'
         },
         nav: [
-            { text: '指引', link: '/guide' },
+            { text: '指引', link: '/guide/guide' },
             {
                 text: '菜单',
                 items: [
