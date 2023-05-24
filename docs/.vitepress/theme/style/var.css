@@ -11,4 +11,5 @@
     --vp-c-green-lighter: var(--vp-c-green);
     --vp-c-green-dark: var(--vp-c-green);
     --vp-c-green-darker: var(--vp-c-green);
+    -o-animation: alternate-reverse;
 }
