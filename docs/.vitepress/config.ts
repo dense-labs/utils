@@ -53,7 +53,7 @@ export default defineConfig({
         ],
         footer: {
             message: 'Released under the MIT License.',
-            copyright: 'Copyright © 2019-present @dense-labs'
+            copyright: 'Copyright © 2023-present @dense-labs'
         }
     },
 })
