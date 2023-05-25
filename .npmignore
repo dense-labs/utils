@@ -5,3 +5,4 @@ playgrounds/*
 .eslintrc.js
 rollup.config.js
 .editorconfig
+docs/*
