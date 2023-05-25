@@ -1,5 +1,5 @@
-import {defineConfig, type DefaultTheme} from 'vitepress'
-// import {sync} from 'fast-glob'
+import {defineConfig} from 'vitepress'
+import {getSidebarItems} from '../shared/'
 export default defineConfig({
     title: '@dense-labs/utils',
     description: 'Commonly used utility functions',
@@ -45,22 +45,13 @@ export default defineConfig({
                 items: [{text: "快速开始", link: "/guide/guide"}]
             },
             {
-                // text: `Utils（${getItems("utils").length}）`,
-                text: `Utils（2）`,
-                // collapsible: true,
-                items:  [{text: "color", link: "/utils/color/color"}, {text: "is", link: "/utils/is/is"}]
+                text: `Utils（${getSidebarItems("utils").length}）`,
+                items:  getSidebarItems("utils")
             }
         ],
         footer: {
             message: 'Released under the MIT License.',
-            copyright: 'Copyright © 2019-present movecss'
+            copyright: 'Copyright © 2019-present @dense-labs'
         }
     },
 })
-/* function getItems(path: string) {
-    const links: DefaultTheme.SidebarItem[] = [];
-    sync(`docs/${path}/*`, {onlyDirectories: true, objectMode: true}).forEach(({ name }) => {
-        links.push({text: name, link: `/${path}/${name}/${name}`})
-    })
-    return links;
-} */
