@@ -25,5 +25,5 @@ pnpm add @dense-labs/utils
 <script src="https://cdn.jsdelivr.net/npm/@dense-labs/utils/dist/index.umd.js"></script>
 ```
 :::tip
-`CDN` 引用可以使用平台提供的一个全局变量 `denseLabs` 包含所有方法
+当使用`CDN` 引用时，可以使用平台提供的一个全局变量 `denseLabs` 包含所有方法
 :::
