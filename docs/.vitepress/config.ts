@@ -1,5 +1,5 @@
-import {defineConfig} from 'vitepress'
-import {getSidebarItems} from '../shared/'
+import { defineConfig } from 'vitepress'
+import { getSidebarItems } from '../shared/'
 export default defineConfig({
     title: '@dense-labs/utils',
     description: 'Commonly used utility functions',
@@ -44,11 +44,11 @@ export default defineConfig({
         sidebar: [
             {
                 text: '介绍',
-                items: [{text: "快速开始", link: "/guide/guide"}]
+                items: [{ text: "快速开始", link: "/guide/guide" }]
             },
             {
                 text: `Utils（${getSidebarItems("utils").length}）`,
-                items:  getSidebarItems("utils")
+                items: getSidebarItems("utils")
             }
         ],
         footer: {
@@ -56,4 +56,21 @@ export default defineConfig({
             copyright: 'Copyright © 2023-present @dense-labs'
         }
     },
+    vite: {
+        server: {
+            host: "0.0.0.0",
+        },
+        optimizeDeps: {
+            include: [
+                "axios"
+            ],
+            exclude: ["@dense-labs/utils"]
+        },
+        build: {
+            chunkSizeWarningLimit: 10000
+        }
+    },
+    vue: {
+        reactivityTransform: true
+    }
 })

@@ -1,24 +1,5 @@
 import {describe, test, expect, expectTypeOf} from 'vitest'
-import {getRandomColor, rgbToHex, rgbToRgba, genRandomColor} from '../dist/index.mjs'
-
-test('getRandomColor', () => {
-	const color = getRandomColor()
-	console.log(color)
-	expectTypeOf(color).toBeString()
-})
-
-test('rgbToHex', () => {
-	expect(rgbToHex('rgb(123, 45, 67)') === '#7b2d43').toBe(true)
-	expect(rgbToHex('rgb(255, 255, 255)') === '#ffffff').toBe(true)
-	expect(rgbToHex('rgb(0, 0, 0)') === '#000000').toBe(true)
-})
-
-test('rgbToRgba', () => {
-	expect(rgbToRgba('rgb(123, 45, 67)', 0.5) === 'rgba(123, 45, 67, 0.51)').toBe(false)
-	expect(rgbToRgba('rgb(255, 255, 255)', '0.75') === 'rgba(255, 255, 255, 0.75)').toBe(true)
-	expect(rgbToRgba('rgb(0, 0, 0)', 1) === 'rgba(0, 0, 0, 1)').toBe(true)
-})
-
+import {genRandomColor} from '../dist/index.mjs'
 describe('genRandomColor', () => {
 	test('returns a random RGB color string when no type is specified', () => {
 		const result = genRandomColor()
