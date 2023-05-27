@@ -15,4 +15,10 @@
 
 ### 基础用法
 
+	
+<details>
+<summary>查看代码</summary>
+
 <<< @/utils/color/genRandomColor.vue
+</details>
+

@@ -19,7 +19,7 @@ export default defineConfig({
     themeConfig: {
         lastUpdatedText: '最近更新时间',
         outlineTitle: "目录",
-        outline: [2, 6],
+        outline: [2, 2],
         socialLinks: [
             { icon: 'github', link: 'https://github.com/dense-labs/utils' }
         ],
