@@ -155,10 +155,10 @@ export function isValidIdNumber(idNumber: string): boolean {
  * @returns {string} 出生日期，格式为 yyyy-mm-dd。
  */
 export function getBirthDate(idCard: string): string {
-	const isValid = isValidIdNumber(idCard);
-    if (!isValid) {
-        throw new Error('Invalid idCard number');
-    }
+	const isValid = isValidIdNumber(idCard)
+	if (!isValid) {
+		throw new Error('Invalid idCard number')
+	}
 	const year = idCard.substring(6, 10)
 	const month = idCard.substring(10, 12)
 	const day = idCard.substring(12, 14)
@@ -171,10 +171,10 @@ export function getBirthDate(idCard: string): string {
  * @returns {string} 性别，值为 '男' 或 '女'。
  */
 export function getGender(idCard: string): string {
-	const isValid = isValidIdNumber(idCard);
-    if (!isValid) {
-        throw new Error('Invalid idCard number');
-    }
+	const isValid = isValidIdNumber(idCard)
+	if (!isValid) {
+		throw new Error('Invalid idCard number')
+	}
 	const genderCode = parseInt(idCard.substring(16, 17))
 	return genderCode % 2 === 0 ? '女' : '男'
 }
@@ -185,10 +185,10 @@ export function getGender(idCard: string): string {
  * @returns {number} 年龄。
  */
 export function getAge(idCard: string): number {
-	const isValid = isValidIdNumber(idCard);
-    if (!isValid) {
-        throw new Error('Invalid idCard number');
-    }
+	const isValid = isValidIdNumber(idCard)
+	if (!isValid) {
+		throw new Error('Invalid idCard number')
+	}
 	const birthDate = new Date(getBirthDate(idCard))
 	const diff = Date.now() - birthDate.getTime()
 	const ageDate = new Date(diff)
