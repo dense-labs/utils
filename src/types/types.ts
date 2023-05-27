@@ -149,3 +149,12 @@ export function isJSON(str: string): boolean {
 		return false
 	}
 }
+
+/**
+ * 判断给定的参数是否为 Element。
+ * @param element 要检查的参数。
+ * @returns 如果参数是 Element，则返回 `true`，否则返回 `false`。
+ */
+export function isElement(element: unknown): element is Element {
+	return Boolean(element && (element as Element).nodeName)
+}

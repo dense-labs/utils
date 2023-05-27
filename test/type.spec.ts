@@ -1,5 +1,5 @@
 import {test, expect, describe} from 'vitest'
-import {isUndefined, isNull, isString, isNumber, isBoolean, isSymbol, isBigInt, isObject, isPlainObject, isArray, isFunction, isDate} from '../dist/index.mjs'
+import {isUndefined, isNull, isString, isNumber, isBoolean, isSymbol, isBigInt, isObject, isPlainObject, isArray, isFunction, isElement} from '../dist/index.mjs'
 
 test('isUndefined', () => {
 	expect(isUndefined(undefined) === true).toBe(true)
@@ -80,4 +80,17 @@ test('isFunction', () => {
 	expect(isFunction(() => {}) === true).toBe(true)
 	expect(isFunction(Function) === true).toBe(true)
 	expect(isFunction({}) === false).toBe(true)
+})
+
+describe('isElement', () => {
+	test('should return true for an Element', () => {
+		const el = document.createElement('div')
+		expect(isElement(el)).toBe(true)
+	})
+	test('should return false for a non-Element value', () => {
+		expect(isElement('not an element')).toBe(false)
+	})
+	test('should return false for undefined value', () => {
+		expect(isElement(undefined)).toBe(false)
+	})
 })
