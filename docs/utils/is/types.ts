@@ -104,3 +104,33 @@ console.log(isJson) // true
 const jsonString1 = '{name: "John", age: 30}'
 const isJson1 = isJSON(jsonString1)
 console.log(isJson1) // false
+
+// isUrl
+console.log(isUrl('https://www.example.com')) // true
+console.log(isUrl('http://www.example.com')) // true
+console.log(isUrl('ftp://ftp.example.com')) // true
+console.log(isUrl('http://localhost')) // true
+console.log(isUrl('https://localhost:3000')) // true
+console.log(isUrl('https://www.google.com/search?q=url&oq=url')) // true
+
+console.log(isUrl('')) // false
+console.log(isUrl('htp://www.example.com')) // false
+console.log(isUrl('http:/www.example.com')) // false
+console.log(isUrl('http://localhost:')) // false
+
+// isEmail
+console.log(isEmail('user@example.com')) // true
+console.log(isEmail('user123@example.com')) // true
+console.log(isEmail('user+123@example.com')) // true
+
+console.log(isEmail('')) // false
+console.log(isEmail('userexample.com')) // false
+console.log(isEmail('user@examplecom')) // false
+console.log(isEmail('user@example.')) // false
+
+// isValidIdNumber
+const validIdNumber = '32551919310425054X'
+console.log(isValidIdNumber(validIdNumber)) // true
+
+const invalidIdNumber = '42026920180923922X'
+console.log(isValidIdNumber(invalidIdNumber)) // false
