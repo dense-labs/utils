@@ -73,7 +73,7 @@
 | ------------ | ------------ | --------- |
 | `arg`        | **unknown**| `unknown` |
 
-## BigInt
+## isBigInt
 
 检查是否为 `BigInt` 类型。
 
@@ -214,3 +214,10 @@
 | ------------ | ------------ | --------- |
 | `arg`        |  | `any` |
 | `arg1`        |  | `any` |
+
+	
+<details>
+<summary>查看代码</summary>
+
+<<< @/utils/is/types.ts
+</details>
