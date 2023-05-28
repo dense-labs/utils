@@ -1,17 +1,5 @@
 import {test, expect, describe} from 'vitest'
-import {isUndefined, isNull, isString, isNumber, isBoolean, isSymbol, isBigInt, isObject, isPlainObject, isArray, isFunction, isElement} from '../dist/index.mjs'
-
-test('isUndefined', () => {
-	expect(isUndefined(undefined) === true).toBe(true)
-	expect(isUndefined(null) === false).toBe(true)
-	expect(isUndefined(0) === false).toBe(true)
-})
-
-test('isNull', () => {
-	expect(isNull(null) === true).toBe(true)
-	expect(isNull(undefined) === false).toBe(true)
-	expect(isNull(false) === false).toBe(true)
-})
+import {isUndefined, isNull, isString, isNumber, isBoolean, isSymbol, isBigInt, isObject, isPlainObject, isArray, isFunction, isElement, isRegExp, isJSON} from '../dist/index.mjs'
 
 test('isUndefined', () => {
 	expect(isUndefined(undefined) === true).toBe(true)
@@ -92,5 +80,39 @@ describe('isElement', () => {
 	})
 	test('should return false for undefined value', () => {
 		expect(isElement(undefined)).toBe(false)
+	})
+})
+
+describe('isRegExp', () => {
+	test('should return true for a valid regular expression', () => {
+		expect(isRegExp(/[a-z]/)).toBe(true)
+		expect(isRegExp(new RegExp('a*b', 'g'))).toBe(true)
+	})
+	test('should return false for an invalid regular expression', () => {
+		expect(isRegExp(null)).toBe(false)
+		expect(isRegExp(undefined)).toBe(false)
+		expect(isRegExp('')).toBe(false)
+		expect(isRegExp(42)).toBe(false)
+		expect(isRegExp({})).toBe(false)
+		expect(isRegExp([])).toBe(false)
+	})
+})
+
+describe('isJSON', () => {
+	test('should return true for a valid JSON string', () => {
+		// Arrange
+		const jsonString = '{"name": "John", "age": 30}'
+		// Act
+		const isJson = isJSON(jsonString)
+		// Assert
+		expect(isJson).toBe(true)
+	})
+	test('should return false for an invalid JSON string', () => {
+		// Arrange
+		const jsonString = '{name: "John", age: 30}'
+		// Act
+		const isJson = isJSON(jsonString)
+		// Assert
+		expect(isJson).toBe(false)
 	})
 })
