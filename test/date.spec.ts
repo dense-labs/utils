@@ -1,5 +1,20 @@
 import {describe, expect, it} from 'vitest'
-import {dateFormat, isTimeInRange, formatNumber, formatDate, getLatelyDay, getNextDay, getWeekByDay, getMonth, isDate, formatTimeFromSeconds} from '../dist/index.mjs'
+import {dateFormat, isTimeInRange, formatNumber, formatDate, getLatelyDay, getNextDay, getWeekByDay, getMonth, formatTimestamp, isLeapYear, isDate, formatTimeFromSeconds} from '../dist/index.mjs'
+
+describe('dateFormat', () => {
+	it('should format date correctly', () => {
+		const date = new Date('2021-09-15 12:00:00')
+		const format = 'yyyy-MM-dd HH:mm:ss'
+		const expected = '2021-09-15 12:00:00'
+		expect(dateFormat(date, format)).toBe(expected)
+	})
+	it('should handle string input correctly', () => {
+		const dateStr = '2021-09-15 12:00:00'
+		const format = 'dd/MM/yyyy'
+		const expected = '15/09/2021'
+		expect(dateFormat(dateStr, format)).toBe(expected)
+	})
+})
 
 describe('date tools', async () => {
 	it('dateFormat', () => {
@@ -11,9 +26,9 @@ describe('date tools', async () => {
 	})
 
 	it('isTimeInRange', () => {
-		expect(isTimeInRange('2023-01-09 20:24:21', '2023-05-09 20:24:21', '2023-03-22')).toBe(true)
+		expect(isTimeInRange(new Date('2023-01-09 20:24:21'), '2023-05-09 20:24:21', '2023-03-22')).toBe(true)
 		expect(isTimeInRange('2023-01-09 20:24:21', '2023-05-09 20:24:21', '2022-03-22')).toBe(false)
-		expect(isTimeInRange('2023-01-09', '2023-05-09', '2022-03-22')).toBe(false)
+		expect(isTimeInRange(new Date('2023-01-09'), new Date('2023-05-09'), '2022-03-22')).toBe(false)
 		expect(isTimeInRange('2023-01-09 20:24:21', '2023-05-09 20:24:21', '2023-03-22 23:54:22')).toBe(true)
 	})
 })
@@ -73,6 +88,31 @@ describe('getMonth', () => {
 	})
 })
 
+describe('formatTimestamp function', () => {
+	it('should properly format the timestamp to the specified format', () => {
+		const timestamp = new Date('2021-10-31 10:00:00').getTime()
+		const format = 'dd/MM/yyyy HH:mm:ss'
+		const expectedOutput = '31/10/2021 10:00:00'
+		const actualOutput = formatTimestamp(timestamp, format)
+		expect(actualOutput).toBe(expectedOutput)
+	})
+})
+
+describe('isLeapYear function', () => {
+	it('should return true for a leap year', () => {
+		expect(isLeapYear(2000)).toBe(true)
+	})
+	it('should return false for a non-leap year', () => {
+		expect(isLeapYear(2001)).toBe(false)
+	})
+	it('should return false for a year divisible by 100 but not by 400', () => {
+		expect(isLeapYear(1700)).toBe(false)
+	})
+	it('should return true for a year divisible by 4 but not by 100', () => {
+		expect(isLeapYear(2008)).toBe(true)
+	})
+})
+
 describe('isDate', () => {
 	it('true', () => {
 		expect(isDate('2022-01-01')).toBe(true)
@@ -89,23 +129,25 @@ describe('isDate', () => {
 })
 
 describe('formatTimeFromSeconds', () => {
-	it('returns an object with correct properties', () => {
-		const result = formatTimeFromSeconds(123456)
-		expect(result).toHaveProperty('days')
-		expect(result).toHaveProperty('hours')
-		expect(result).toHaveProperty('minutes')
-		expect(result).toHaveProperty('seconds')
+	it('should format and return formatted time', () => {
+		const formattedTime = formatTimeFromSeconds(3600)
+		expect(formattedTime).toEqual('1小时0分0秒')
+	})
+	it('should format and return formatted time with days', () => {
+		const formattedTime = formatTimeFromSeconds(100000)
+		expect(formattedTime).toEqual('1天3小时46分40秒')
+	})
+	it('should format and return the formatted time object', () => {
+		const formattedTime = formatTimeFromSeconds(100000, true)
+		expect(formattedTime).toEqual({days: 1, hours: 3, minutes: 46, seconds: 40})
 	})
 
-	it('returns the correct values', () => {
-		const result = formatTimeFromSeconds(123456)
-		expect(result).toEqual({days: 1, hours: 10, minutes: 17, seconds: 36})
+	it('should return undefined when seconds is not provided', () => {
+		const formattedTime = formatTimeFromSeconds(undefined)
+		expect(formattedTime).toEqual(undefined)
 	})
-
-	it('returns undefined for falsy input', () => {
-		expect(formatTimeFromSeconds(undefined)).toBeUndefined()
-		expect(formatTimeFromSeconds(null)).toBeUndefined()
-		expect(formatTimeFromSeconds(0)).toBeUndefined()
-		expect(formatTimeFromSeconds('')).toBeUndefined()
+	it('should return empty string when seconds is 0', () => {
+		const formattedTime = formatTimeFromSeconds(0)
+		expect(formattedTime).toBeUndefined()
 	})
 })

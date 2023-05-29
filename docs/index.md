@@ -3,7 +3,7 @@ layout: home
 hero:
   name: "@dense-labs/utils"
   text: 常用的工具函数
-  tagline: 工具函数，助您提高开发效率
+  tagline: 帮助您简化代码，并开发应用程序更高效
   image:
     src: /logo3.svg
     alt: "@dense-labs/utils"

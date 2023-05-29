@@ -90,7 +90,7 @@ export function getLatelyDay(n: number): Date {
 }
 
 /**
- * 获取指定天数后的日期。
+ * 获取当前天数后的日期。
  * @param n 要获取的天数。
  * @returns 指定天数后的日期。
  */
@@ -162,9 +162,16 @@ export function isDate(str: string | Date): boolean {
  * @param seconds 要转换的秒数。
  * @returns 格式为 "X天X小时X分X秒" 的时间字符串。
  */
-export function formatTimeFromSeconds(seconds: number) {
+interface FormattedTime {
+	days: number
+	hours: number
+	minutes: number
+	seconds: number
+}
+
+export function formatTimeFromSeconds(seconds: number, isCustom = false): FormattedTime | undefined | string {
 	if (!seconds) {
-		return
+		return undefined
 	}
 	const days = Math.floor(seconds / (3600 * 24))
 	seconds %= 3600 * 24
@@ -172,6 +179,8 @@ export function formatTimeFromSeconds(seconds: number) {
 	seconds %= 3600
 	const minutes = Math.floor(seconds / 60)
 	seconds %= 60 // 计算剩余的秒数
-	// return `${days > 0 ? days + "天" : ""}${hours}小时${minutes}分${seconds}秒`;
-	return {days, hours, minutes, seconds}
+	if (isCustom) {
+		return {days, hours, minutes, seconds}
+	}
+	return `${days > 0 ? days + '天' : ''}${hours}小时${minutes}分${seconds}秒`
 }
