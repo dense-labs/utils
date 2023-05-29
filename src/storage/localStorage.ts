@@ -10,7 +10,7 @@ export class ExLocalStorage {
 		return `${ExLocalStorage.STORAGE_PREFIX}${key}`
 	}
 
-	setItem(key: string, value: string, expireTime?: number) {
+	setItem(key: string, value: any, expireTime?: number) {
 		const item: ExLocalStorageItem = {value}
 		if (expireTime) {
 			item.expireTime = Date.now() + expireTime
