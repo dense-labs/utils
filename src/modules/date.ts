@@ -84,7 +84,7 @@ export function formatDate(date: Date): string {
  * @param n 要获取的天数。
  * @returns 最近 n 天的日期。
  */
-export function getLatelyDay(n: number): Date {
+export function getLatelyDay(n: number | 0): Date {
 	let nowDate = new Date().getTime()
 	return new Date(nowDate - 1000 * 60 * 60 * 24 * n)
 }

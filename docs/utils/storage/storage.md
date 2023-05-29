@@ -20,8 +20,9 @@ import storageLocal from './storageLocal.vue'
 </script>
 
 <ClientOnly>
-  <div class="emoji-wrap">
+  <div class="wrap">
     <storageLocal></storageLocal>
+    打开控制台，查看localStorage 变化
   </div>
 </ClientOnly>
 
