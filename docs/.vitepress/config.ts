@@ -71,6 +71,6 @@ export default defineConfig({
         }
     },
     vue: {
-        reactivityTransform: true
+        // reactivityTransform: true
     }
 })
