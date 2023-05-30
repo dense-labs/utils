@@ -58,7 +58,7 @@ console.log(serialize({c: true, d: null})) // 'c=true&d=null'
 | **参数属性** | **说明**     | **类型**  | **默认值**  |
 | ------------ | ------------ | --------- |---------  |
 | `url`  | 要打开的 URL 地址| `string` |
-| `target `  | 要打开的 URL 地址| `string` | **_blank** |
+| `target `  | 要打开的 URL 地址| `Target` | **_blank** |
 
 ```ts
 export type Target = "_blank" | "_self" | "_parent" | "_top" | "framename"; 
