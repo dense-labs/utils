@@ -1,13 +1,3 @@
-<!-- <script setup>
-import tags from './tags.vue'
-</script>
-## 🏷️ 标签
-<ClientOnly>
-  <tags :className="'type-it1'" :values="['支持Vue3']" />
-  <tags :className="'type-it2'" :tagNameList="['浏览器']" :values="['支持任意运行在浏览器的JS语言']" :speed="100" />
-  <tags :className="'type-it3'" :tagNameList="['Node']" :values="['支持NodeJs']" />
-</ClientOnly>
- -->
 # @dense-labs/utils
 ## 📦 安装
 ```bash
