@@ -62,6 +62,8 @@ console.log(element.classList.contains('foo')) // true
 | `cls`        | **class名称**| `string` |
 
 ```js
+import {removeClass} from '@dense-labs/utils'
+
 const element = document.createElement('div')
 element.classList.add('bar')
 removeClass(element, 'bar')
@@ -70,4 +72,25 @@ console.log(element.classList.contains('bar')) // false
 element.classList.add('remove-class')
 removeClass(element, 'bar')
 console.log(element.classList.contains('remove-class')) // true
+```
+
+
+## getClass
+
+获取指定元素的所有类名
+
+返回值 `(element: HTMLElement): string[]`
+
+### 参数
+
+| **参数属性** | **说明**     | **类型**  |
+| ------------ | ------------ | --------- |
+| `element`        | **dom元素**| `Element` |
+
+```js
+import {getClass} from '@dense-labs/utils'
+
+const element = document.createElement('div')
+element.className = 'class1 class2'
+const result = getClass(element) //  ['class1', 'class2']
 ```

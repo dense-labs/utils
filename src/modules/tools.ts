@@ -280,10 +280,11 @@ export function isEqual(value1: any, value2: any): boolean {
 }
 
 /**
- * 将一个数字转换为千位分隔符格式的字符串
- * @param num 数字
- * @returns 返回格式化会的数字
+ * 将数字转换成千位分隔符格式的字符串
+ * @param num 需要格式化的数字
+ * @param symbol 分隔符，默认使用逗号
+ * @returns 返回格式化后的字符串
  */
-export function formatNumberWithCommas(num: number, symbol = ','): string {
+export function formatCurrency(num: number, symbol = ','): string {
 	return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, symbol)
 }

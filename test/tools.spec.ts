@@ -1,5 +1,5 @@
 import {test, assert, describe, expect, it, vi} from 'vitest'
-import {isUrl, serialize, isEmail, openLink, debounce, throttle, isValidIdNumber, getBirthDate, getGender, getAge, generateUUID, getUrlParameter, maskString, shuffle, shuffleObject, isEqual} from '../dist/index.mjs'
+import {isUrl, serialize, isEmail, openLink, debounce, throttle, isValidIdNumber, getBirthDate, getGender, getAge, generateUUID, getUrlParameter, maskString, shuffle, shuffleArray, shuffleObject, isEqual, formatCurrency} from '../dist/index.mjs'
 describe('isUrl', () => {
 	it('should return true for valid URLs', () => {
 		expect(isUrl('https://www.example.com')).toBe(true)
@@ -209,6 +209,39 @@ describe('shuffle', () => {
 		})
 	})
 })
+
+describe('shuffleArray', () => {
+	it('should not modify an array with only one element', () => {
+		const arr = [1]
+		expect(shuffleArray(arr)).toEqual(arr)
+	})
+
+	it('should shuffle an array with multiple elements', () => {
+		const arr = [1, 2, 3, 4, 5]
+		const shuffled = shuffleArray(arr)
+		expect(shuffled).not.toEqual(arr)
+		expect(shuffled).toHaveLength(arr.length)
+		expect(shuffled).toEqual(expect.arrayContaining(arr))
+	})
+
+	it('should shuffle an array with multiple elements and allow same elements', () => {
+		const arr = [1, 2, 3, 4, 5]
+		const shuffled = shuffleArray(arr, true)
+		expect(shuffled).not.toEqual(arr)
+		expect(shuffled).toHaveLength(arr.length)
+		expect(shuffled).toEqual(expect.arrayContaining(arr))
+	})
+
+	it('should shuffle an array with multiple elements and disallow same elements', () => {
+		const arr = [1, 2, 3, 4, 5]
+		const shuffled = shuffleArray(arr, false)
+		expect(shuffled).not.toEqual(arr)
+		expect(shuffled).toHaveLength(arr.length)
+		expect(shuffled).toEqual(expect.arrayContaining(arr))
+		expect(shuffled).not.toEqual(arr)
+	})
+})
+
 describe('shuffleObject', () => {
 	it('should shuffle an object with allowSame=true', () => {
 		let obj = {name: 'Alice', age: 30, email: 'alice@example.com'}
@@ -270,5 +303,32 @@ describe('isEqual', () => {
 		const obj2 = {a: [1, 2], b: {c: 3}}
 
 		expect(isEqual(obj1, obj2)).toBe(true)
+	})
+})
+
+describe('formatCurrency', () => {
+	it('formats a positive number with commas', () => {
+		const formatted = formatCurrency(1234567.89)
+		expect(formatted).toBe('1,234,567.89')
+	})
+	it('formats a negative number with commas and a negative sign', () => {
+		const formatted = formatCurrency(-1234567.89)
+		expect(formatted).toBe('-1,234,567.89')
+	})
+	it('formats a number with a different currency symbol', () => {
+		const formatted = formatCurrency(1234567.89)
+		expect(formatted).toBe('1,234,567.89')
+	})
+	it('formats a number with decimals', () => {
+		const formatted = formatCurrency(1234567.891)
+		expect(formatted).toBe('1,234,567.891')
+	})
+	it('formats a number with no decimals', () => {
+		const formatted = formatCurrency(-1234567)
+		expect(formatted).toBe('-1,234,567')
+	})
+	it('formats a zero number', () => {
+		const formatted = formatCurrency(0)
+		expect(formatted).toBe('0')
 	})
 })
