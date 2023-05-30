@@ -30,12 +30,13 @@ export function isEmail(email: string): boolean {
 	return pattern.test(email)
 }
 
+export type Target = '_blank' | '_self' | '_parent' | '_top' | 'framename'
 /**
  * 在新窗口中打开指定的 URL 地址。
  * @param url 要打开的 URL 地址。
  * @param n 可选的窗口名称，如果未指定，则默认为 "_blank"。
  */
-export function openLink(url: string, n = '_blank'): void {
+export function openLink(url: string, n: Target = '_blank'): void {
 	let e = document.createElement('a')
 	e.setAttribute('href', url)
 	e.setAttribute('target', n)
@@ -46,84 +47,6 @@ export function openLink(url: string, n = '_blank'): void {
 	document.body.appendChild(e)
 	e.click()
 	e.remove()
-}
-
-/**
- * 创建一个防抖函数，该函数在一段时间内只会执行一次。
- * @param func 要防抖的函数。
- * @param wait 防抖的时间间隔，单位为毫秒。
- * @param options 可选的参数对象，包含 leading 和 trailing 两个属性，分别表示是否在开始和结束时执行一次。
- * @returns 返回一个防抖函数。
- */
-export function debounce(func: {apply: (arg0: any, arg1: any[]) => any}, wait: number, options: {leading: any}) {
-	let timeout: number, result: any
-
-	const later = (context: any, args: any) => {
-		timeout = null
-		if (args) result = func.apply(context, args)
-	}
-
-	const debounced = function (this: any, ...args: any[]) {
-		if (timeout) clearTimeout(timeout)
-		const callNow = !timeout && options.leading
-		timeout = setTimeout(later, wait, this, args)
-		if (callNow) result = func.apply(this, args)
-		return result
-	}
-
-	debounced.cancel = function () {
-		clearTimeout(timeout)
-		timeout = null
-	}
-
-	return debounced
-}
-
-/**
- * 创建一个节流函数，该函数在一段时间内只会执行一次。
- * @param func 要节流的函数。
- * @param wait 节流的时间间隔，单位为毫秒。
- * @param options 可选的参数对象，包含 leading 和 trailing 两个属性，分别表示是否在开始和结束时执行一次。
- * @returns 返回一个节流函数。
- */
-export function throttle(func: {apply: (arg0: any, arg1: any[]) => any}, wait: number, options: {leading: boolean; trailing: boolean}) {
-	let timeout: number, context: any, args: any[], result: any
-	let previous = 0
-
-	const later = () => {
-		previous = options.leading === false ? 0 : Date.now()
-		timeout = null
-		result = func.apply(context, args)
-		if (!timeout) context = args = null
-	}
-
-	const throttled = function (this: any, ..._args: any[]) {
-		const now = Date.now()
-		if (!previous && options.leading === false) previous = now
-		const remaining = wait - (now - previous)
-		context = this
-		args = _args
-		if (remaining <= 0 || remaining > wait) {
-			if (timeout) {
-				clearTimeout(timeout)
-				timeout = null
-			}
-			previous = now
-			result = func.apply(context, args)
-			if (!timeout) context = args = null
-		} else if (!timeout && options.trailing !== false) {
-			timeout = setTimeout(later, remaining)
-		}
-		return result
-	}
-
-	throttled.cancel = function () {
-		clearTimeout(timeout)
-		previous = 0
-		timeout = context = args = null
-	}
-
-	return throttled
 }
 
 /**

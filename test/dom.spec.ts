@@ -1,7 +1,7 @@
 // Import the Vitest library
-import {test, expect, assert} from 'vitest'
+import {describe, test, expect, assert} from 'vitest'
 // Import the functions to be tested
-import {hasClass, addClass, removeClass, toggleClass, getScrollBarWidth} from '../dist/index.mjs'
+import {hasClass, addClass, removeClass, toggleClass, getScrollBarWidth, getClass} from '../dist/index.mjs'
 
 test('hasClass', () => {
 	const element = document.createElement('div')
@@ -42,4 +42,27 @@ test('toggleClass', () => {
 test('getScrollBarWidth', () => {
 	const width = getScrollBarWidth()
 	expect(width >= 0).toBe(true)
+})
+
+describe('getClass function', () => {
+	test('should return classes as array', () => {
+		const element = document.createElement('div')
+		element.className = 'class1 class2'
+		const expected = ['class1', 'class2']
+		const result = getClass(element)
+		expect(result).toEqual(expected)
+	})
+	test('should return empty array when no classes are found', () => {
+		const element = document.createElement('div')
+		const expected: string[] = []
+		const result = getClass(element)
+		expect(result).toEqual(expected)
+	})
+	test('should not return empty string class', () => {
+		const element = document.createElement('div')
+		element.className = ' '
+		const expected: string[] = []
+		const result = getClass(element)
+		expect(result).toEqual(expected)
+	})
 })

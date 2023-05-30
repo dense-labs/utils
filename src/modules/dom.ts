@@ -73,3 +73,12 @@ export const getScrollBarWidth = function (): number {
 
 	return scrollBarWidth
 }
+
+/**
+ * 获取指定元素的所有类名。
+ * @param element 要获取类名的元素。
+ * @returns 包含元素所有类名的字符串数组。
+ */
+export function getClass(element: HTMLElement): string[] {
+	return element.className.split(' ').filter(Boolean)
+}
