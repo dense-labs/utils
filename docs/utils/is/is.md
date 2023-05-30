@@ -2,7 +2,7 @@
 
 ## isUndefined
 
-检查是否为 `undefined`。
+检查是否为 `undefined`
 
 返回值 `(arg: unknown): boolean`
 
@@ -23,7 +23,7 @@ console.log(isUndefined(0) === false) // true
 
 ## isNull
 
-检查是否为 `null`。
+检查是否为 `null`
 
 返回值 `(arg: unknown): boolean`
 
@@ -44,7 +44,7 @@ console.log(isNull(false) === false) // true
 
 ## isString
 
-检查是否为字符串。
+检查是否为字符串
 
 返回值 `(arg: unknown): boolean`
 
@@ -65,7 +65,7 @@ console.log(isString(123) === false) // true
 
 ## isNumber
 
-检查是否为数字。
+检查是否为数字
 
 返回值 `(arg: unknown): boolean`
 
@@ -86,7 +86,7 @@ console.log(isNumber('123') === false) // true
 
 ## isBoolean
 
-检查否为布尔值。
+检查否为布尔值
 
 返回值 `(arg: unknown): boolean`
 
@@ -107,7 +107,7 @@ console.log(isBoolean(null) === false) // true
 
 ## isSymbol
 
-检查是否为symbol。
+检查是否为symbol
 
 返回值 `(arg: unknown): boolean`
 
@@ -130,7 +130,7 @@ console.log(isSymbol('baz') === false) // true
 
 ## isBigInt
 
-检查是否为 `BigInt` 类型。
+检查是否为 `BigInt` 类型
 
 返回值 `(arg: unknown): boolean`
 
@@ -150,7 +150,7 @@ console.log(isBigInt('123') === false) // true
 
 ## isObject
 
-检查是否为对象。
+检查是否为对象
 
 返回值 `(arg: unknown): boolean`
 
@@ -171,7 +171,7 @@ console.log(isObject({}) === true) // true
 
 ## isPlainObject
 
-检查是否为普通对象。
+检查是否为普通对象
 
 返回值 `(arg: unknown): boolean`
 
@@ -192,7 +192,7 @@ console.log(isPlainObject(new Date()) === false) // true
 ```
 ## isArray
 
-检查是否为数组。
+检查是否为数组
 
 返回值 `(arg: unknown): boolean`
 
@@ -212,7 +212,7 @@ console.log(isArray('') === false) // true
 ```
 ## isFunction
 
-检查是否为函数对象。
+检查是否为函数对象
 
 返回值 `(arg: unknown): boolean`
 
@@ -233,7 +233,7 @@ console.log(isFunction({}) === false) // true
 ```
 ## isRegExp
 
-检查是否为正则表达式。
+检查是否为正则表达式
 
 返回值 `(arg: unknown): boolean`
 
@@ -258,7 +258,7 @@ console.log(isRegExp([])) // false
 ```
 ## isJSON
 
-检查一个字符串是否可以被解析为 JSON 对象。
+检查一个字符串是否可以被解析为 JSON 对象
 
 返回值 `(arg: unknown): boolean`
 
@@ -282,7 +282,7 @@ console.log(isJson1) // false
 
 ## isElement
 
-检查是否为Element对象。
+检查是否为Element对象
 
 返回值 `(arg: unknown): boolean`
 
@@ -304,7 +304,7 @@ console.log(isElement(undefined)) // false
 
 ## isUrl
 
-检查是否是一个合法的 URL 地址。
+检查是否是一个合法的 URL 地址
 
 返回值 `(arg: string): boolean`
 
@@ -333,7 +333,7 @@ console.log(isUrl('http://localhost:')) // false
 
 ## isEmail
 
-检查是否是一个合法的 email 地址。
+检查是否是一个合法的 email 地址
 
 返回值 `(arg: string): boolean`
 
@@ -359,7 +359,7 @@ console.log(isEmail('user@example.')) // false
 
 ## isValidIdNumber
 
-检查是否是合法的身份证号码。
+检查是否是合法的身份证号码
 
 返回值 `(arg: string): boolean`
 
@@ -383,7 +383,7 @@ console.log(isValidIdNumber(invalidIdNumber)) // false
 
 ## isEqual
 
-判断两个值是否相等。
+判断两个值是否相等
 
 返回值 `(arg: any, arg1: any): boolean`
 
