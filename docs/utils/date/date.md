@@ -39,7 +39,7 @@ console.log(dateFormat('2023-05-15 12:00:00', 'dd/MM/yyyy')) // 15/05/2023
 
 ## isTimeInRange
 
-将给定的日期格式化为指定格式的字符串
+判断给定的时间是否在指定的时间范围内
 
 返回值 `(startTime: Date | string, endTime: Date | string, targetTime: Date | string): boolean`
 
