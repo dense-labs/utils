@@ -128,7 +128,7 @@ console.log(getWeekByDay('2023-05-10')) // 星期三
 console.log(getWeekByDay('2023-06-10')) // 星期六
 ```
 
-## getMonth
+## getLatelyMonth
 
 获取最近 n 个月的日期
 
