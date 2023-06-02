@@ -142,12 +142,12 @@ console.log(getWeekByDay('2023-06-10')) // 星期六
 
 ### 用法
 ```js
-import {getMonth} from '@dense-labs/utils'
+import {getLatelyMonth} from '@dense-labs/utils'
 
 const today = new Date() // 比如今天是 2023-05-29
-console.log(getMonth(1)) // 2023-04-29
+console.log(getLatelyMonth(1)) // 2023-04-29
 
-console.log(getMonth(-2)) // 2023-07-29
+console.log(getLatelyMonth(-2)) // 2023-07-29
 ```
 
 ## formatTimestamp

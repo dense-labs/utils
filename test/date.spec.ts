@@ -1,5 +1,5 @@
 import {describe, expect, it} from 'vitest'
-import {dateFormat, isTimeInRange, formatNumber, formatDate, getLatelyDay, getNextDay, getWeekByDay, getMonth, formatTimestamp, isLeapYear, isDate, formatTimeFromSeconds, isEarlierThanMonth} from '../dist/index.mjs'
+import {dateFormat, isTimeInRange, formatNumber, formatDate, getLatelyDay, getNextDay, getWeekByDay, getLatelyMonth, formatTimestamp, isLeapYear, isDate, formatTimeFromSeconds, isEarlierThanMonth} from '../dist/index.mjs'
 
 describe('dateFormat', () => {
 	it('should format date correctly', () => {
@@ -74,17 +74,17 @@ describe('getWeekByDay', () => {
 	})
 })
 
-describe('getMonth', () => {
+describe('getLatelyMonth', () => {
 	it('should return the correct date for one month ago', () => {
 		const today = new Date()
 		const oneMonthAgo = dateFormat(new Date(today.getFullYear(), today.getMonth() - 1, today.getDate()), 'yyyy-MM-dd')
-		expect(getMonth(1)).toBe(oneMonthAgo)
+		expect(getLatelyMonth(1)).toBe(oneMonthAgo)
 	})
 
 	it('false', () => {
 		const today = new Date()
 		const oneMonthAgo = dateFormat(new Date(today.getFullYear(), today.getMonth() + 2, today.getDate()), 'yyyy-MM-dd')
-		expect(getMonth(-2)).toBe(oneMonthAgo)
+		expect(getLatelyMonth(-2)).toBe(oneMonthAgo)
 	})
 })
 

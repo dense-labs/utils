@@ -116,7 +116,7 @@ export function getWeekByDay(dateString: string): string {
  * @param monthNumber 要获取的月数。
  * @returns 最近 n 个月的日期。
  */
-export function getMonth(monthNumber: number): string {
+export function getLatelyMonth(monthNumber: number): string {
 	let number = monthNumber || 1
 	let end = new Date()
 	end.setMonth(end.getMonth() - number)
