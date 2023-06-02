@@ -184,3 +184,15 @@ export function formatTimeFromSeconds(seconds: number, isCustom = false): Format
 	}
 	return `${days > 0 ? days + '天' : ''}${hours}小时${minutes}分${seconds}秒`
 }
+
+/**
+ * 判断指定日期是否在另一个日期的月份之前
+ *
+ * @param {Date} date - 要比较的日期
+ * @param {Date} comparisonDate - 要进行比较的日期
+ * @return {boolean} 如果指定的日期在另一个日期的月份之前，则返回true；否则，返回false。
+ */
+export function isEarlierThanMonth(date: Date, comparisonDate: Date): boolean {
+	const comparisonMonth = new Date(comparisonDate.getFullYear(), comparisonDate.getMonth(), 1)
+	return date < comparisonMonth
+}
