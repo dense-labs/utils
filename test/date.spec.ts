@@ -1,5 +1,5 @@
 import {describe, expect, it} from 'vitest'
-import {dateFormat, isTimeInRange, formatNumber, formatDate, getLatelyDay, getNextDay, getWeekByDay, getMonth, formatTimestamp, isLeapYear, isDate, formatTimeFromSeconds} from '../dist/index.mjs'
+import {dateFormat, isTimeInRange, formatNumber, formatDate, getLatelyDay, getNextDay, getWeekByDay, getMonth, formatTimestamp, isLeapYear, isDate, formatTimeFromSeconds, isEarlierThanMonth} from '../dist/index.mjs'
 
 describe('dateFormat', () => {
 	it('should format date correctly', () => {
@@ -149,5 +149,23 @@ describe('formatTimeFromSeconds', () => {
 	it('should return empty string when seconds is 0', () => {
 		const formattedTime = formatTimeFromSeconds(0)
 		expect(formattedTime).toBeUndefined()
+	})
+})
+
+describe('isEarlierThanMonth', () => {
+	it("should return true if date is earlier than comparisonDate's month", () => {
+		const date = new Date('2021-01-15')
+		const comparisonDate = new Date('2021-02-01')
+		expect(isEarlierThanMonth(date, comparisonDate)).toBe(true)
+	})
+	it("should return false if date is later than comparisonDate's month", () => {
+		const date = new Date('2021-02-15')
+		const comparisonDate = new Date('2021-01-01')
+		expect(isEarlierThanMonth(date, comparisonDate)).toBe(false)
+	})
+	it('should return false if date is in the same month as comparisonDate', () => {
+		const date = new Date('2021-02-15')
+		const comparisonDate = new Date('2021-02-01')
+		expect(isEarlierThanMonth(date, comparisonDate)).toBe(false)
 	})
 })
