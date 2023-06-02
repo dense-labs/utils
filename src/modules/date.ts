@@ -126,10 +126,10 @@ export function getMonth(monthNumber: number): string {
 /**
  * 把时间戳格式化成日期
  * @param timestamp 时间戳
- * @param format 格式 yyyy-MM-dd HH:mm:ss
+ * @param format 默认格式 yyyy-MM-dd HH:mm:ss
  * @returns 格式化后的日期
  */
-export function formatTimestamp(timestamp: number, format: string): string {
+export function formatTimestamp(timestamp: number, format = 'yyyy-MM-dd HH:mm:ss'): string {
 	const date = new Date(timestamp)
 	return dateFormat(date, format)
 }

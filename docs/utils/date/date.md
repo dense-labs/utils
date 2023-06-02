@@ -152,15 +152,17 @@ console.log(getMonth(-2)) // 2023-07-29
 
 ## formatTimestamp
 
-判断一个字符串是否为有效的日期格式
+把时间戳格式化成日期
 
-返回值 (str: number): string
+返回值 (timestamp: number, format = 'yyyy-MM-dd HH:mm:ss'): string
 
 ### 参数
 
-| **参数属性** | **说明**     | **类型**  |
-| ------------ | ------------ | --------- |
-| `str`       | 时间戳  | `number` |
+| **参数属性** | **说明**     | **类型**  |**默认值**  |
+| ------------ | ------------ | --------- |--------- |
+| `timestamp` | 时间戳  | `number` |`-`|
+| `format`    | 格式   | `string` |`yyyy-MM-dd HH:mm:ss`|
+
 
 ### 用法
 ```js
@@ -169,7 +171,7 @@ import {formatTimestamp} from '@dense-labs/utils'
 const timestamp = +new Date('2023-04-31 10:00:00')
 console.log(formatTimestamp(timestamp)) // 2023-04-31 10:00:00
 
-console.log(formatTimestamp(1685339811793)) // 2023-05-29 13:56:51
+console.log(formatTimestamp(1685339811793, 'yyyy/MM/dd HH:mm:ss')) // 2023/05/29 13:56:51
 ```
 
 ## isLeapYear
