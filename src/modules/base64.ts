@@ -41,3 +41,38 @@ export function base64ToBlob(base64Data: string, contentType = ''): Blob {
 	const byteArray = new Uint8Array(byteArrays)
 	return new Blob([byteArray], {type: contentType})
 }
+
+/**
+ * 将文件转为 base64 编码
+ * @param file 要编码的文件
+ * @returns 文件内容的 base64 编码
+ */
+export async function fileToBase64(file: File): Promise<string> {
+	const reader = new FileReader()
+	return new Promise((resolve, reject) => {
+		reader.onload = () => {
+			const result = reader.result as string
+			resolve(result.split(',')[1])
+		}
+		reader.onerror = () => {
+			reject(reader.error)
+		}
+		reader.readAsDataURL(file)
+	})
+}
+
+/**
+ * 将 base64 编码转为文件
+ * @param base64 要解码的 base64 字符串
+ * @param filename 下载文件的名称
+ * @returns 无
+ */
+export async function base64ToFile(base64: string, filename: string): Promise<void> {
+	const blob = await fetch(`data:application/octet-stream;base64,${base64}`).then((r) => r.blob())
+	const url = URL.createObjectURL(blob)
+	const a = document.createElement('a')
+	a.href = url
+	a.download = filename
+	a.click()
+	URL.revokeObjectURL(url)
+}
