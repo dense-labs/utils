@@ -6,7 +6,7 @@ const storageValue = ref('')
 const setItem = () => {
     let num = 5000
     storageLocal().setItem('key', input.value, num)
-    storageValue.value = `存储的对象${num}秒后失效`
+    storageValue.value = `存储的对象${num}毫秒后失效`
 }
 
 const getItem = () => {
