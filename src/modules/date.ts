@@ -196,3 +196,16 @@ export function isEarlierThanMonth(date: Date, comparisonDate: Date): boolean {
 	const comparisonMonth = new Date(comparisonDate.getFullYear(), comparisonDate.getMonth(), 1)
 	return date < comparisonMonth
 }
+
+/**
+ * 返回包括当前年之前和之后指定数量年份的数组
+ *
+ * @param numYearsBefore 要包括在数组中的当前年之前的年数
+ * @param numYearsAfter 要包括在数组中的当前年之后的年数
+ * @returns 年份数组
+ */
+export function getYearsAroundCurrent(numYearsBefore: number, numYearsAfter: number): number[] {
+	const currentYear = new Date().getFullYear()
+	const numYearsTotal = numYearsBefore + numYearsAfter + 1
+	return Array.from({length: numYearsTotal}, (_, i) => currentYear - numYearsBefore + i)
+}
