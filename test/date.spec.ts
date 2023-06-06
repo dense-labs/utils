@@ -1,5 +1,5 @@
 import {describe, expect, it} from 'vitest'
-import {dateFormat, isTimeInRange, formatNumber, formatDate, getLatelyDay, getNextDay, getWeekByDay, getLatelyMonth, formatTimestamp, isLeapYear, isDate, formatTimeFromSeconds, isEarlierThanMonth} from '../dist/index.mjs'
+import {dateFormat, isTimeInRange, formatNumber, formatDate, getLatelyDay, getNextDay, getWeekByDay, getLatelyMonth, formatTimestamp, isLeapYear, isDate, formatTimeFromSeconds, isEarlierThanMonth, getYearsAroundCurrent} from '../dist/index.mjs'
 
 describe('dateFormat', () => {
 	it('should format date correctly', () => {
@@ -166,5 +166,36 @@ describe('isEarlierThanMonth', () => {
 		const date = new Date('2021-02-15')
 		const comparisonDate = new Date('2021-02-01')
 		expect(isEarlierThanMonth(date, comparisonDate)).toBe(false)
+	})
+})
+
+describe('getYearsAroundCurrent', () => {
+	it('should return correct years before and after current year', () => {
+		const result = getYearsAroundCurrent(3, 3, 2008)
+		expect(result).toEqual([2005, 2006, 2007, 2008, 2009, 2010, 2011])
+	})
+	it('should return correct years when only years before current year are requested', () => {
+		const result = getYearsAroundCurrent(5, 0)
+		expect(result).toEqual([2018, 2019, 2020, 2021, 2022, 2023])
+	})
+	it('should return correct years when only years after current year are requested', () => {
+		const result = getYearsAroundCurrent(0, 3)
+		expect(result).toEqual([2023, 2024, 2025, 2026])
+	})
+	it('should return current year when both numYearsBefore and numYearsAfter are 0', () => {
+		const result = getYearsAroundCurrent(0, 0)
+		expect(result).toEqual([new Date().getFullYear()])
+	})
+	it('should throw an error when numYearsBefore is negative', () => {
+		expect(() => getYearsAroundCurrent(-1, 2)).toThrow()
+	})
+	it('should throw an error when numYearsAfter is negative', () => {
+		expect(() => getYearsAroundCurrent(2, -1)).toThrow()
+	})
+
+	it('should return an array of years around the current year', () => {
+		const expectedYears = [2017, 2018, 2019, 2020, 2021, 2022, 2023]
+		const result = getYearsAroundCurrent(3, 3, 2020)
+		expect(result).toEqual(expectedYears)
 	})
 })

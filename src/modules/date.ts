@@ -198,14 +198,18 @@ export function isEarlierThanMonth(date: Date, comparisonDate: Date): boolean {
 }
 
 /**
- * 返回包括当前年之前和之后指定数量年份的数组
- *
- * @param numYearsBefore 要包括在数组中的当前年之前的年数
- * @param numYearsAfter 要包括在数组中的当前年之后的年数
- * @returns 年份数组
+ * 获取当前年份前后指定年份数组成的数组
+ * @param currentYear 当前年份，默认为当前时间的年份
+ * @param numYearsBefore 当前年份前的年数
+ * @param numYearsAfter 当前年份后的年数
+ * @returns 由当前年份前后指定年份数组成的数组
+ * @throws 当numYearsBefore或numYearsAfter小于0时，抛出错误
  */
-export function getYearsAroundCurrent(numYearsBefore: number, numYearsAfter: number): number[] {
-	const currentYear = new Date().getFullYear()
+export function getYearsAroundCurrent(numYearsBefore: number, numYearsAfter: number, currentYear = new Date().getFullYear()): number[] {
+	if (numYearsBefore < 0 || numYearsAfter < 0) {
+		throw new Error('yearsBefore or yearsAfter Must be a positive integer ')
+	}
+	// const currentYear = new Date().getFullYear()
 	const numYearsTotal = numYearsBefore + numYearsAfter + 1
 	return Array.from({length: numYearsTotal}, (_, i) => currentYear - numYearsBefore + i)
 }
