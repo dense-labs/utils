@@ -256,3 +256,36 @@ console.log(result) // {days: 1, hours: 10, minutes: 17, seconds: 36}
 
 console.log(formatTimeFromSeconds(100000)) // 1天3小时46分40秒
 ```
+
+## getYearsAroundCurrent
+
+获取当前年份前后指定年份数组成的数组
+
+返回值 `(numYearsBefore: number, numYearsAfter: number, currentYear = new Date().getFullYear()): number[]`
+
+### 参数
+
+| **参数属性** | **说明**     | **类型**  | **默认值**  |
+| ------------ | ------------ | --------- | --------- |
+| `numYearsBefore`       | 日期字符串  | `number` |`-` |
+| `numYearsAfter`       | 日期字符串  | `number` |`-` |
+| `currentYear`       | 日期字符串  | `number` |new Date().getFullYear()|
+
+### 用法
+```js
+import {getYearsAroundCurrent} from '@dense-labs/utils'
+
+const result = getYearsAroundCurrent(3, 3, 2008)
+console.log(result) // [2005, 2006, 2007, 2008, 2009, 2010, 2011])
+
+const result = getYearsAroundCurrent(5, 0)
+console.log(result) // [2018, 2019, 2020, 2021, 2022, 2023])
+
+const result = getYearsAroundCurrent(0, 3)
+console.log(result) // [2023, 2024, 2025, 2026])
+
+const result = getYearsAroundCurrent(0, 0)
+console.log(result) // [new Date().getFullYear()])
+
+consle.log(getYearsAroundCurrent(-1, 2)) // throw yearsBefore or yearsAfter Must be a positive integer
+```
