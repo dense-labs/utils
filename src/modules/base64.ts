@@ -26,13 +26,15 @@ export function imageUrlToBase64(url: string): Promise<string> {
 	})
 }
 
+export type BlobType = 'text/plain' | 'text/html' | 'text/css' | 'text/javascript' | 'application/json' | 'application/xml' | 'image/png' | 'image/jpeg' | 'image/gif' | 'audio/mpeg' | 'video/mp4'
+
 /**
  * 将 Base64 编码的字符串转换为 Blob 对象
  * @param base64Data Base64 编码的字符串
  * @param contentType Blob 对象的 MIME 类型
  * @returns Blob 对象
  */
-export function base64ToBlob(base64Data: string, contentType = ''): Blob {
+export function base64ToBlob(base64Data: string, contentType: BlobType = 'text/plain'): Blob {
 	const byteCharacters = atob(base64Data)
 	const byteArrays = []
 	for (let i = 0; i < byteCharacters.length; i++) {

@@ -21,14 +21,30 @@ import {imageUrlToBase64} from '@dense-labs/utils'
 
 将 Base64 编码的字符串转换为 Blob 对象
 
-返回值 `(base64Data: string, contentType = ''): Blob`
+返回值 `(base64Data: string, contentType?: BlobType): Blob`
+
+```ts
+type BlobType = 
+'text/plain' | 
+'text/html' | 
+'text/css' | 
+'text/javascript' | 
+'application/json' | 
+'application/xml' | 
+'image/png' | 
+'image/jpeg' | 
+'image/gif' | 
+'audio/mpeg' | 
+'video/mp4'
+
+```
 
 ### 参数
 
-| **参数属性**  | **说明**     | **类型**  |
-| ------------ | ------------ | --------- |
-| `base64Data`| Base64 编码的字符串| `string` |
-| `contentType`|Blob 对象的 MIME 类型| `string` |
+| **参数属性**  | **说明**     | **类型**  | **默认值**  |
+| ------------ | ------------ | --------- |--------- |
+| `base64Data`| Base64 编码的字符串| `string` |`-` |
+| `contentType`|Blob 对象的 MIME 类型| `string` |`text/plain`|
 
 ```js
 import {base64ToBlob} from '@dense-labs/utils'
