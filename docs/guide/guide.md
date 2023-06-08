@@ -20,7 +20,7 @@ pnpm add @dense-labs/utils
 :::
 
 
-## Emojis 
+## 😀Emojis 
 [点我查看](https://github.com/markdown-it/markdown-it-emoji/blob/master/lib/data/full.json)
 
 在markdown使用 :tada: :100:
@@ -54,7 +54,9 @@ const emojis = ref(emojiData())
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-   gap: 10px;
+  gap: 10px;
+  height: 450px;
+  overflow: auto;
 }
 .em {
   width: 45px;

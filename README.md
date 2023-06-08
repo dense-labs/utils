@@ -24,7 +24,7 @@ pnpm add @dense-labs/utils
 ## 📚 docs
 [查看文档](https://github.com/dense-labs/utils)
 
-## Usage
+## ✒️Usage
 
 ``` js
 import {isEqual} from '@dense-labs/utils'
