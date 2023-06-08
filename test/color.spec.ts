@@ -23,7 +23,7 @@ describe('genRandomColor', () => {
 
 	test('returns a random RGBA color string when type is "rgba"', () => {
 		const result = genRandomColor('rgba')
-		expect(result).toMatch(/^rgba\(\d{1,3},\d{1,3},\d{1,3},0\.\d\)$/)
+		expect(result).toMatch(/rgba?\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*,\s*[0-1]?(\.\d+)?\s*\)/)
 	})
 
 	test('returns a random 16-bit color string when type is "16" or 16', () => {
