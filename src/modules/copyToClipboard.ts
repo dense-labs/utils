@@ -47,7 +47,6 @@ export async function pasteFromClipboard(): Promise<string> {
 	if (navigator.clipboard) {
 		try {
 			const text = await navigator.clipboard.readText()
-			console.log('Text pasted from clipboard')
 			return text
 		} catch (err) {
 			console.error('Error pasting text: ', err)
@@ -66,7 +65,6 @@ export async function pasteFromClipboard(): Promise<string> {
 			document.body.removeChild(textArea)
 			if (successful) {
 				const text = textArea.value
-				console.log('Text pasted from clipboard')
 				return text
 			} else {
 				console.error('Unable to paste text from clipboard')
