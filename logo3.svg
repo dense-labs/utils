@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xlink="http://www.w3.org/1999/xlink" width="200px" height="200px" viewBox="0 0 147 147" overflow="visible">
+    <defs id="SvgjsDefs5514">
+        <linearGradient id="SvgjsLinearGradientzPaghZdYk" gradientUnits="userSpaceOnUse" x1="5.2946198684741175" y1="24.160469233379498" x2="94.80538013152594" y2="75.83953076662054">
+            <stop id="SvgjsStop5517" stop-color="#bd34fe" offset="0"></stop>
+            <stop id="SvgjsStop5518" stop-color="#0073cf" offset="1"></stop>
+        </linearGradient>
+    </defs>
+    <g id="SvgjsG5515" transform="scale(0.515970515970516)" opacity="1">
+        <g id="SvgjsG5519" class="byByg0Jly" transform="translate(275.73233618879937, 275.5991870017976) scale(-2.6629837400359513 -2.6629837400359513) rotate(135, 50.05, 50)" light-content="false" non-strokable="false" fill="url(#SvgjsLinearGradientzPaghZdYk)">
+        <path d="M19.4 63.1H25c.3 0 .5-.2.5-.5V31.7c0-3.4 2.8-6.2 6.2-6.2h30.9c.3 0 .5-.2.5-.5v-5.6c0-4-3.2-7.2-7.2-7.2H19.4c-4 0-7.2 3.2-7.2 7.2V56c0 3.9 3.2 7.1 7.2 7.1zM36.9 75v5.6c0 4 3.2 7.2 7.2 7.2h36.6c4 0 7.2-3.2 7.2-7.2V44c0-4-3.2-7.2-7.2-7.2H75c-.3 0-.5.2-.5.5v30.9c0 3.4-2.8 6.2-6.2 6.2H37.4c-.3.1-.5.3-.5.6z"></path>
+        <path d="M37.4 63.1H56c4 0 7.2-3.2 7.2-7.2V37.4c0-.3-.2-.5-.5-.5H44c-4 0-7.2 3.2-7.2 7.2v18.6c.1.2.3.4.6.4z"></path>
+        </g>
+    </g>
+</svg>
