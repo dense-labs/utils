@@ -1,4 +1,4 @@
-# base64相关函数
+# 复制、粘贴相关函数
 
 ## copyToClipboard
 
