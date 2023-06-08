@@ -1,5 +1,5 @@
-import multiEntry from 'rollup-plugin-multi-entry'
-import {terser} from 'rollup-plugin-terser'
+import multiEntry from '@rollup/plugin-multi-entry'
+import terser from '@rollup/plugin-terser'
 import {uglify} from 'rollup-plugin-uglify'
 import commonjs from '@rollup/plugin-commonjs'
 import typescript from '@rollup/plugin-typescript'
