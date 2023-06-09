@@ -22,7 +22,7 @@ pnpm add @dense-labs/utils
 :::
 
 ## 📚 docs
-[查看文档](https://github.com/dense-labs/utils)
+[查看文档](https://dense-labs.github.io/utils/)
 
 ## ✒️Usage
 
