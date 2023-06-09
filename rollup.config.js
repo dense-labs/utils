@@ -5,6 +5,7 @@ import commonjs from '@rollup/plugin-commonjs'
 import typescript from '@rollup/plugin-typescript'
 import resolve from '@rollup/plugin-node-resolve'
 import clear from 'rollup-plugin-clear'
+import injectnote from 'rollup-plugin-injectnote'
 import fs from 'fs'
 import path from 'path'
 const pkg = JSON.parse(await fs.readFileSync(path.resolve(process.cwd(), './package.json'), {encoding: 'utf-8'}))
@@ -42,7 +43,10 @@ export default [
 			multiEntry(),
 			commonjs(),
 			terser(),
-			uglify()
+			uglify(),
+			injectnote(() => {
+				return `/** @dense-labs/utils v${pkg.version} by ${pkg.author} */\n`
+			})
 		]
 	}
 ]
