@@ -7,6 +7,7 @@ export default defineConfig({
     description: 'Commonly used utility functions',
     lang: "zh",
     lastUpdated: true,
+    base: '/utils',
     head: [
         [
             "meta",
