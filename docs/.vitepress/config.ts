@@ -1,5 +1,7 @@
 import { defineConfig } from 'vitepress'
 import { getSidebarItems } from '../shared/'
+const pkg = require('../../package.json')
+
 export default defineConfig({
     title: '@dense-labs/utils',
     description: 'Commonly used utility functions',
@@ -33,10 +35,12 @@ export default defineConfig({
         nav: [
             { text: '指引', link: '/guide/guide' },
             {
-                text: '菜单',
+                text: pkg.version,
                 items: [
-                    { text: 'Item A', link: '/item-1' },
-                    { text: 'Item C', link: '/item-3' }
+                    {
+                        text: '变更日志',
+                        link: 'https://github.com/dense-labs/utils'
+                    }
                 ]
             }
         ],

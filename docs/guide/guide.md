@@ -19,6 +19,9 @@ pnpm add @dense-labs/utils
 当使用`CDN` 引用时，可以使用提供的一个全局变量 `denseLabs` 包含所有方法
 :::
 
+## 在线调试
+
+你可以在浏览器中直接在[StackBlitz](https://stackblitz.com/edit/vue-svpjx7?file=src%2FApp.vue)上调试
 
 ## 😀Emojis 
 [点我查看](https://github.com/markdown-it/markdown-it-emoji/blob/master/lib/data/full.json)
