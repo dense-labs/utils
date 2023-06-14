@@ -6,7 +6,7 @@ import {imageUrlToBase64, base64ToBlob, fileToBase64, base64ToFile} from '../dis
 // 		const url = 'https://i.imgur.com/7CtSjzX.jpg'
 // 		const result = await imageUrlToBase64(url)
 // 		expect(result).toContain('data:image/jpeg;base64,')
-// 	})
+// 	}, 10000)
 // 	test('throws error when image fails to load', async () => {
 // 		const url = 'https://invalid-url'
 // 		await expect(imageUrlToBase64(url)).rejects.toThrow('Failed to load image')
