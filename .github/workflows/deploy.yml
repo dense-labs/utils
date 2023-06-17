@@ -18,12 +18,12 @@ jobs:
         # with:
         #  fetch-depth: 0
       - uses: actions/setup-node@v3
-        # with:
-        # node-version: 16
-        # cache: npm
-      - run: pnpm install
+         with:
+           node-version: 16
+           cache: npm
+      - run: npm install
       - name: Build
-        run: pnpm run docs:build
+        run: npm run docs:build
       - uses: actions/configure-pages@v2
       - uses: actions/upload-pages-artifact@v1
         with:
