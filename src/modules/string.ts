@@ -3,7 +3,7 @@
  * @param {string} value
  * @returns
  */
-export const trim = (value: string) => toString(value).replace(/^\s+|\s+$/g, '')
+export const trim = (value: string) => value.toString().replace(/^\s+|\s+$/g, '')
 
 /**
  * 将字符串脱敏处理。
