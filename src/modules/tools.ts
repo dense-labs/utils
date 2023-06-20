@@ -151,22 +151,6 @@ export function getUrlParameter(url: string, name: string): string | null {
 }
 
 /**
- * 将字符串脱敏处理。
- * @param {string} str 要脱敏的字符串。
- * @param {number} start 脱敏开始的位置，默认为 0。
- * @param {number} end 脱敏结束的位置，默认为字符串的末尾。
- * @param {string} mask 脱敏使用的掩码字符，默认为 *。
- * @returns {string} 脱敏后的字符串。
- */
-export function maskString(str: string, start = 0, end: number = str.length, mask = '*'): string {
-	if (start < 0 || end > str.length || start >= end) {
-		throw new Error('Invalid start or end position')
-	}
-	const maskLength = end - start
-	return str.substring(0, start) + mask.repeat(maskLength) + str.substring(end)
-}
-
-/**
  * 根据用户代理字符串判断当前设备是否为移动设备。
  * @returns {boolean} 如果当前设备为移动设备，则返回 true；否则返回 false。
  */
