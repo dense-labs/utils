@@ -22,35 +22,33 @@ export function maskString(str: string, start = 0, end: number = str.length, mas
 }
 
 /**
- * 数据脱敏处理
- * @param value 目标字符串
- * @param startIndex 起始处的索引
- * @param endIndex 终止处的索引
- * @param symbol 替换的字符串，默认为*
+ * 从字符串左侧开始对指定数量的字符进行脱敏处理
+ * @param str 目标字符串
+ * @param numChars 需要脱敏的字符数量
+ * @param symbol 替换的字符串，默认为 *
+ * @throws 当 numChars 小于等于 0 时，抛出错误
+ * @returns 脱敏后的字符串
  */
-export const sensitive = (value: string, startIndex: number, endIndex: number, symbol = '*'): string => {
-	if (startIndex < 0 || endIndex > value.length || startIndex >= endIndex) {
-		throw new Error('Invalid start or end position')
+export function maskLeft(str: string, numChars: number, symbol = '*'): string {
+	if (numChars <= 0) {
+		throw new Error('Invalid number of characters')
 	}
-	const reg = new RegExp(`^(.{${startIndex}})(.{${endIndex - startIndex}})(.${endIndex >= value.length ? '?' : '+'})$`)
-	return value.replace(reg, ($0, $1, $2, $3) => $1 + $2.replace(/./g, symbol) + $3)
+	numChars = numChars > str.length ? str.length : numChars
+	return symbol.repeat(numChars) + str.slice(numChars)
 }
 
 /**
- * 从位置左边开始对数据脱敏处理
- * @param value 目标字符串
- * @param index 索引（从左边开始）
- * @param symbol 替换的字符串，默认为*
+ * 从字符串右侧开始对指定数量的字符进行脱敏处理
+ * @param str 目标字符串
+ * @param numChars 需要脱敏的字符数量
+ * @param symbol 替换的字符串，默认为 *
+ * @throws 当 numChars 小于等于 0 时，抛出错误
+ * @returns 脱敏后的字符串
  */
-export const maskLeft = (value = '', index = 0, symbol = '*') => sensitive(value, 0, index, symbol)
-
-/**
- * 从位置右边开始对数据脱敏处理
- * @param value 目标字符串
- * @param index 索引（从右边开始）
- * @param symbol 替换的字符串，默认为*
- */
-export const maskRight = (value = '', index = 0, symbol = '*') => {
-	const strL = value.length
-	return sensitive(value, index > strL ? 0 : strL - index, strL, symbol)
+export function maskRight(str: string, numChars: number, symbol = '*'): string {
+	if (numChars <= 0) {
+		throw new Error('Invalid number of characters')
+	}
+	numChars = numChars > str.length ? str.length : numChars
+	return str.slice(0, -numChars) + symbol.repeat(numChars)
 }
