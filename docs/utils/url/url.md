@@ -99,7 +99,6 @@ import {getUrlParameter} from '@dense-labs/utils'
 const result = getUrlParameter('https://www.example.com/test?foo=bar', 'foo') // bar
 
 const result = getUrlParameter('https://www.example.com/test#foo=bar', 'foo') // bar
-expect(result).toBe('bar')
 
 const result = getUrlParameter('https://www.example.com/test', 'foo') // null
 
