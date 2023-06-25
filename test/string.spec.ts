@@ -6,10 +6,14 @@ describe('maskLeft', () => {
 		expect(maskLeft('1234567890', 4, '*')).toBe('****567890')
 	})
 	test('should throw an error if the number of characters is less than or equal to zero', () => {
-		expect(() => maskLeft('1234567890', 0, '*')).toThrow('Invalid number of characters')
+		expect(maskLeft('1234567890', 0, '*')).toBe('1234567890')
 	})
 	test('should return the original string if the number of characters is greater than the length of the string', () => {
 		expect(maskLeft('1234567890', 12, '*')).toBe('**********')
+	})
+
+	test('should toThrow', () => {
+		expect(() => maskLeft('1234567890', -2)).toThrow('Invalid number of characters')
 	})
 })
 
@@ -18,10 +22,14 @@ describe('maskRight', () => {
 		expect(maskRight('1234567890', 4, '*')).toBe('123456****')
 	})
 	test('should throw an error if the number of characters is less than or equal to zero', () => {
-		expect(() => maskRight('1234567890', 0, '*')).toThrow('Invalid number of characters')
+		expect(maskRight('1234567890', 0, '*')).toBe('1234567890')
 	})
 	test('should return the original string if the number of characters is greater than the length of the string', () => {
 		expect(maskRight('1234567890', 20, '*')).toBe('**********')
+	})
+
+	test('should toThrow', () => {
+		expect(() => maskRight('1234567890', -2)).toThrow('Invalid number of characters')
 	})
 })
 

@@ -40,8 +40,9 @@ console.log(trim(123)) // '123'
 ```js
 import {maskLeft} from '@dense-labs/utils'
 console.log(maskLeft('1234567890', 4, '*')) // ****567890
-console.log(maskLeft('1234567890', 0, '*')) // Invalid number of characters
+console.log(maskLeft('1234567890', -1)) // Invalid number of characters
 console.log(maskLeft('1234567890', 12, '*')) // **********
+console.log(maskLeft('1234567890', 0)) // 1234567890
 
 ```
 
@@ -63,7 +64,8 @@ console.log(maskLeft('1234567890', 12, '*')) // **********
 import {maskRight} from '@dense-labs/utils'
 
 console.log(maskRight('1234567890', 4, '*')) // 123456****
-console.log(maskRight('1234567890', 0, '*')) // Invalid number of characters
+console.log(maskRight('1234567890', -1)) // Invalid number of characters
 console.log(maskRight('1234567890', 20, '*')) // **********
+console.log(maskRight('1234567890', 0)) // 1234567890
 
 ```

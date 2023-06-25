@@ -26,11 +26,11 @@ export function maskString(str: string, start = 0, end: number = str.length, mas
  * @param str 目标字符串
  * @param numChars 需要脱敏的字符数量
  * @param symbol 替换的字符串，默认为 *
- * @throws 当 numChars 小于等于 0 时，抛出错误
+ * @throws 当 numChars 小于 0 时，抛出错误
  * @returns 脱敏后的字符串
  */
 export function maskLeft(str: string, numChars: number, symbol = '*'): string {
-	if (numChars <= 0) {
+	if (numChars < 0) {
 		throw new Error('Invalid number of characters')
 	}
 	numChars = numChars > str.length ? str.length : numChars
@@ -42,13 +42,13 @@ export function maskLeft(str: string, numChars: number, symbol = '*'): string {
  * @param str 目标字符串
  * @param numChars 需要脱敏的字符数量
  * @param symbol 替换的字符串，默认为 *
- * @throws 当 numChars 小于等于 0 时，抛出错误
+ * @throws 当 numChars 小于 0 时，抛出错误
  * @returns 脱敏后的字符串
  */
 export function maskRight(str: string, numChars: number, symbol = '*'): string {
-	if (numChars <= 0) {
+	if (numChars < 0) {
 		throw new Error('Invalid number of characters')
 	}
 	numChars = numChars > str.length ? str.length : numChars
-	return str.slice(0, -numChars) + symbol.repeat(numChars)
+	return numChars === 0 ? str : str.slice(0, -numChars) + symbol.repeat(numChars)
 }
