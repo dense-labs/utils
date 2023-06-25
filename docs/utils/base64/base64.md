@@ -44,7 +44,7 @@ type BlobType =
 | **参数属性**  | **说明**     | **类型**  | **默认值**  |
 | ------------ | ------------ | --------- |--------- |
 | `base64Data`| Base64 编码的字符串| `string` |`-` |
-| `contentType`|Blob 对象的 MIME 类型| `string` |`text/plain`|
+| `contentType`|Blob 对象的 MIME 类型| `BlobType` |`text/plain`|
 
 ```js
 import {base64ToBlob} from '@dense-labs/utils'
