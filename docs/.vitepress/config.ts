@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress'
 import { getSidebarItems } from '../shared/'
-const pkg = require('../../package.json')
+import pkg from '../../package.json'
 
 export default defineConfig({
     title: '@dense-labs/utils',
