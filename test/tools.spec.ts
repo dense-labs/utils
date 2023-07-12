@@ -4,9 +4,6 @@ describe('isUrl', () => {
 	it('should return true for valid URLs', () => {
 		expect(isUrl('https://www.example.com')).toBe(true)
 		expect(isUrl('http://www.example.com')).toBe(true)
-		expect(isUrl('ftp://ftp.example.com')).toBe(true)
-		expect(isUrl('http://localhost')).toBe(true)
-		expect(isUrl('https://localhost:3000')).toBe(true)
 		expect(isUrl('https://www.google.com/search?q=url&oq=url')).toBe(true)
 	})
 

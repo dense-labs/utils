@@ -1,11 +1,19 @@
 /**
  * 判断给定的字符串是否是一个合法的 URL 地址。
- * @param t 要判断的字符串。
+ * @param url 要判断的字符串。
  * @returns 如果给定的字符串是一个合法的 URL 地址，则返回 true；否则返回 false。
  */
-export function isUrl(t: string): boolean {
-	const pattern = "^((https|http|ftp|rtsp|mms)?://)(([0-9]{1,3}.){3}[0-9]{1,3}|([0-9a-z_!~*'()-]+.)*([0-9a-z][0-9a-z-]{0,61})?[0-9a-z].[a-z]{2,6})(:[0-9]{1,4})?((/?)|(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$"
-	return new RegExp(pattern, 'ig').test(t)
+export function isUrl(url: string): boolean {
+	const pattern = new RegExp(
+		'^(https?:\\/\\/)?' + // 协议
+			'((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // 域名
+			'((\\d{1,3}\\.){3}\\d{1,3}))' + // IP 地址
+			'(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // 端口和路径
+			'(\\?[;&a-z\\d%_.~+=-]*)?' + // 查询字符串
+			'(\\#[-a-z\\d_]*)?$',
+		'i'
+	) // 锚点
+	return !!pattern.test(url)
 }
 /**
  * 将对象序列化为 URL 编码字符串
