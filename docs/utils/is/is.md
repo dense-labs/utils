@@ -320,15 +320,17 @@ import {isUrl} from '@dense-labs/utils'
 
 console.log(isUrl('https://www.example.com')) // true
 console.log(isUrl('http://www.example.com')) // true
-console.log(isUrl('ftp://ftp.example.com')) // true
-console.log(isUrl('http://localhost')) // true
-console.log(isUrl('https://localhost:3000')) // true
 console.log(isUrl('https://www.google.com/search?q=url&oq=url')) // true
+console.log(isUrl('http://192.168.150.4/#/home?sign=2a8fadca9d486d9')) // true
+console.log(isUrl('https://dash.cloudflare.com/971f0bcd52e85ded7cee')) // true
 
 console.log(isUrl('')) // false
-console.log(isUrl('htp://www.example.com')) // false
-console.log(isUrl('http:/www.example.com')) // false
-console.log(isUrl('http://localhost:')) // false
+console.log(isUrl('htp://www.example.com'))  // false
+console.log(isUrl('http:/www.example.com'))  // false
+console.log(isUrl('http://:'))  // false
+console.log(isUrl('ftp://www.example.com'))  // false
+console.log(isUrl('www.example.com'))  // false
+console.log(isUrl('http://localhost'))  // false
 ```
 
 ## isEmail
