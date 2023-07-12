@@ -1,9 +1,11 @@
 {
 	"name": "@dense-labs/utils",
-	"version": "1.2.10",
+	"version": "1.2.11",
 	"description": "📦 Commonly used utility functions to help simplify code and develop applications more efficiently",
 	"keywords": [
-		"tools", "function", "efficiency"
+		"tools",
+		"function",
+		"efficiency"
 	],
 	"homepage": "https://github.com/dense-labs/utils",
 	"repository": {
