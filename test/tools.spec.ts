@@ -5,13 +5,18 @@ describe('isUrl', () => {
 		expect(isUrl('https://www.example.com')).toBe(true)
 		expect(isUrl('http://www.example.com')).toBe(true)
 		expect(isUrl('https://www.google.com/search?q=url&oq=url')).toBe(true)
+		expect(isUrl('http://192.168.150.4/#/home?sign=2a8fadca9d486d9')).toBe(true)
+		expect(isUrl('https://dash.cloudflare.com/971f0bcd52e85ded7cee')).toBe(true)
 	})
 
 	it('should return false for invalid URLs', () => {
 		expect(isUrl('')).toBe(false)
 		expect(isUrl('htp://www.example.com')).toBe(false)
 		expect(isUrl('http:/www.example.com')).toBe(false)
-		expect(isUrl('http://localhost:')).toBe(false)
+		expect(isUrl('http://:')).toBe(false)
+		expect(isUrl('ftp://www.example.com')).toBe(false)
+		expect(isUrl('www.example.com')).toBe(false)
+		expect(isUrl('http://localhost')).toBe(false)
 	})
 })
 

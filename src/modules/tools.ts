@@ -4,16 +4,11 @@
  * @returns 如果给定的字符串是一个合法的 URL 地址，则返回 true；否则返回 false。
  */
 export function isUrl(url: string): boolean {
-	const pattern = new RegExp(
-		'^(https?:\\/\\/)?' + // 协议
-			'((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // 域名
-			'((\\d{1,3}\\.){3}\\d{1,3}))' + // IP 地址
-			'(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // 端口和路径
-			'(\\?[;&a-z\\d%_.~+=-]*)?' + // 查询字符串
-			'(\\#[-a-z\\d_]*)?$',
-		'i'
-	) // 锚点
-	return !!pattern.test(url)
+	//判断URL地址的正则表达式为:http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?
+	//下面的代码中应用了转义字符"\"输出一个字符"/"
+	let Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- ./?%&=]*)?/
+	let objExp = new RegExp(Expression)
+	return objExp.test(url)
 }
 /**
  * 将对象序列化为 URL 编码字符串
