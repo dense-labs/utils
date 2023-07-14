@@ -13,7 +13,7 @@ function getTag(value: unknown): string {
  * 检查 `value` 是否为 `undefined`。
  *
  * @param value 要检查的值。
- * @returns 如果参数似乎为 `undefined` 则返回 `true`。
+ * @returns 如果参数为 `undefined` 则返回 `true`。
  */
 export function isUndefined(value: unknown): value is undefined {
 	return value === undefined
@@ -23,7 +23,7 @@ export function isUndefined(value: unknown): value is undefined {
  * 检查 `value` 是否为 `null`。
  *
  * @param value 要检查的值。
- * @returns 如果参数似乎为 `null` 则返回 `true`。
+ * @returns 如果参数为 `null` 则返回 `true`。
  */
 export function isNull(value: unknown): value is null {
 	return value === null
@@ -63,7 +63,7 @@ export function isBoolean(value: unknown): value is boolean {
  * 检查 `value` 是否为符号。
  *
  * @param value 要检查的值。
- * @returns 如果参数似乎为符号则返回 `true`。
+ * @returns 如果参数为符号则返回 `true`。
  */
 export function isSymbol(value: unknown): value is symbol {
 	const type = typeof value
@@ -74,7 +74,7 @@ export function isSymbol(value: unknown): value is symbol {
  * 检查 `value` 是否为 `BigInt` 类型。
  *
  * @param value 要检查的值。
- * @returns 如果参数似乎为 `BigInt`，则返回 `true`。
+ * @returns 如果参数为 `BigInt`，则返回 `true`。
  */
 export function isBigInt(value: unknown): value is bigint {
 	return typeof value === 'bigint'
@@ -84,7 +84,7 @@ export function isBigInt(value: unknown): value is bigint {
  * 检查 `value` 是否为对象。
  *
  * @param value 要检查的值。
- * @returns 如果参数似乎为对象，则返回 `true`。
+ * @returns 如果参数为对象，则返回 `true`。
  */
 export function isObject(value: unknown): value is Record<string, unknown> {
 	const type = typeof value
@@ -95,7 +95,7 @@ export function isObject(value: unknown): value is Record<string, unknown> {
  * 检查 `value` 是否为普通对象。
  *
  * @param value 要检查的值。
- * @returns 如果参数似乎为普通对象，则返回 `true`。
+ * @returns 如果参数为普通对象，则返回 `true`。
  */
 export function isPlainObject(value: unknown): value is Record<string, unknown> {
 	if (!isObject(value)) return false
@@ -112,7 +112,7 @@ export function isPlainObject(value: unknown): value is Record<string, unknown> 
  * 检查 `value` 是否为数组。
  *
  * @param value 要检查的值。
- * @returns 如果参数似乎为数组，则返回 `true`。
+ * @returns 如果参数为数组，则返回 `true`。
  */
 export function isArray(value: unknown): value is Array<any> {
 	return Array.isArray(value)
