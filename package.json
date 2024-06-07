@@ -1,6 +1,6 @@
 {
 	"name": "@dense-labs/utils",
-	"version": "1.2.13",
+	"version": "1.2.14",
 	"description": "📦 Commonly used utility functions to help simplify code and develop applications more efficiently",
 	"keywords": [
 		"tools",
