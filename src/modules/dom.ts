@@ -82,3 +82,33 @@ export const getScrollBarWidth = function (): number {
 export function getClass(element: HTMLElement): string[] {
 	return element.className.split(' ').filter(Boolean)
 }
+
+/**
+ * 获取视频第一帧封面图
+ * @param {url = '', currentTime = 0}
+ * @returns 返回base64格式的图片数据
+ */
+export const getFirstFrame = ({url = '', currentTime = 0}: {url: string; currentTime?: number}): Promise<string> => {
+	return new Promise((resolve) => {
+		const video = document.createElement('video')
+		const canvas = document.createElement('canvas')
+		const ctx = canvas.getContext('2d')
+		video.src = url
+		video.style.cssText = 'position: fixed; top: -100%; left: -100%; width: 400px; display: none; visibility: hidden;'
+		video.controls = true
+		video.crossOrigin = 'Anonymous'
+		video.currentTime = currentTime
+		video.addEventListener('loadedmetadata', function () {
+			// 确保视频已加载元数据后绘制第一帧
+			canvas.width = video.videoWidth // 设置canvas的宽度和高度
+			canvas.height = video.videoHeight
+			// 绘制视频的第一帧到Canvas
+			ctx && ctx.drawImage(video, 0, 0, canvas.width, canvas.height)
+			// 从Canvas获取第一帧的图像
+			const firstFrame = canvas.toDataURL('image/png')
+			// 将第一帧显示到img元素中
+			resolve(firstFrame)
+		})
+		resolve('')
+	})
+}

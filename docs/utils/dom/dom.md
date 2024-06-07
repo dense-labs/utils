@@ -94,3 +94,23 @@ const element = document.createElement('div')
 element.className = 'class1 class2'
 const result = getClass(element) //  ['class1', 'class2']
 ```
+
+## getFirstFrame
+
+获取视频第一帧封面图
+
+返回值 `{url: string; currentTime?: number}: string`
+
+### 参数
+
+| **参数属性** | **说明**     | **类型**  |
+| ------------ | ------------ | --------- |
+| `url`        | **视频url**| `string` |
+| `currentTime`| **第几帧（s）**| `number` |
+
+```js
+import {getFirstFrame} from '@dense-labs/utils'
+
+const imgbase64 = await getFirstFrame({url: 'https://xxx.me/1.pm4'})
+
+```
