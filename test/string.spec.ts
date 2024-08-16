@@ -1,5 +1,5 @@
 import {describe, expect, test} from 'vitest'
-import {maskRight, maskLeft, trim} from '../dist/index.mjs'
+import {maskRight, maskLeft, trim, formatString} from '../dist/index.mjs'
 
 describe('maskLeft', () => {
 	test('should mask the left side of the string with the given symbol', () => {
@@ -48,5 +48,35 @@ describe('trim', () => {
 	})
 	test('should convert non-string input to string and remove leading/trailing whitespaces', () => {
 		expect(trim(123)).toBe('123')
+	})
+})
+
+describe('formatString', () => {
+	test('should replace one placeholder with a string', () => {
+		expect(formatString('Hello {0}', 'World')).toBe('Hello World')
+	})
+
+	test('should replace multiple placeholders with strings', () => {
+		expect(formatString('Hello {0}, how are you {1}?', 'John', 'today')).toBe('Hello John, how are you today?')
+	})
+
+	test('should leave placeholder unchanged if no argument is provided', () => {
+		expect(formatString('Hello {0}')).toBe('Hello {0}')
+	})
+
+	test('should replace placeholders with numbers', () => {
+		expect(formatString('The number is {0} and the result is {1}', 42, 7)).toBe('The number is 42 and the result is 7')
+	})
+
+	test('should handle multiple occurrences of the same placeholder', () => {
+		expect(formatString('Repeat {0} twice: {0}{0}', 'test')).toBe('Repeat test twice: testtest')
+	})
+
+	test('should handle no placeholders', () => {
+		expect(formatString('No placeholders here')).toBe('No placeholders here')
+	})
+
+	test('should handle extra arguments without placeholders', () => {
+		expect(formatString('Only one placeholder {0}', 'first', 'second')).toBe('Only one placeholder first')
 	})
 })

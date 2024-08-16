@@ -69,3 +69,25 @@ console.log(maskRight('1234567890', 20, '*')) // **********
 console.log(maskRight('1234567890', 0)) // 1234567890
 
 ```
+
+## formatString
+
+格式化字符串，替换其中的占位符 {index} 为相应的参数值
+
+返回值 `(str: string, agrs:  (string | number)[]): string`
+
+### 参数
+
+| **参数属性** | **说明**     | **类型**  | **默认值**  |
+| ------------ | ------------ | --------- | --------- |
+| `str`     | 格式化的字符串，包含零个或多个占位符 {index} | `string` ||
+| `agrs` | 一个或多个参数，用于替换字符串中的占位符 | `(string | number)[]` ||
+
+```js
+import {formatString} from '@dense-labs/utils'
+
+// 使用示例
+console.log(formatString('Hello {0}', 'John')); // 输出: Hello John
+console.log(formatString('Hello {0}, how are you {1}?', 'John', 'today', 6666)); // 输出: Hello John, how are you today?
+
+```
