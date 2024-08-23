@@ -1,4 +1,4 @@
-# @dense-labs/utils
+# @dense-labs/utils![@dense-labs](https://img.shields.io/npm/v/@dense-labs/utils.svg) 
 
 常用的工具函数, 帮助简化代码，并开发应用程序更高效
 ## 📦 Install
